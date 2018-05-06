@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMSSA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True">
     <Grid>
-        
+        <Grid.ColumnDefinitions/>
+        <Grid HorizontalAlignment="Left" Height="72" Margin="10,10,-8,0" VerticalAlignment="Top" Width="1014">
+            <Label x:Name="title_txt" Content="RMSSA" HorizontalAlignment="Left" Margin="0,-4,0,12" FontSize="48" FontFamily="Algerian" Width="170" Height="64" VerticalAlignment="Bottom"/>
+            <TextBox Text="Search..." Name="search_txt" Margin="309,-2,264,12" Opacity="0.8" Background="#B291A64B" SelectionBrush="#B20078D7" FontSize="36" FontFamily="Arial" TextDecorations="{x:Null}" Foreground="Black" ToolTip="Search" GotFocus="search_txt_GotFocus" Height="62" VerticalAlignment="Bottom" >
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </Grid>
+        <Image x:Name="slider_image" HorizontalAlignment="Left" Height="285" Margin="10,82,0,0" VerticalAlignment="Top" Width="996"/>
     </Grid>
 </Window>
