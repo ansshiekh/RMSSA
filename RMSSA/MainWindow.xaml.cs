@@ -37,11 +37,12 @@ namespace RMSSA
         }
         private void change_slider_image()
         {
-            if(img_count>4)
+            if (img_count > 4)
             {
                 img_count = 1;
             }
-            string path = "C:\\Users\\Muhammad Anas\\Documents\\University_Stuff\\Visual Programming\\project\\RMSSA\\RMSSA\\images\\"+img_count+".jpg";
+            //string path = "C:\\Users\\Muhammad Anas\\Documents\\University_Stuff\\Visual Programming\\project\\RMSSA\\RMSSA\\images\\"+img_count+".jpg";
+            string path = "pack://application:,,,/Resources/Images/" + img_count + ".jpg";
             img_count++;
             BitmapImage dp = new BitmapImage(new Uri(path));
 

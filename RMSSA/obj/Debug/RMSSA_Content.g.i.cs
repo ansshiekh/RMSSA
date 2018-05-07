@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/1.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/2.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/3.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/4.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("rhssa.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("rhssa_log.ldf")]
 

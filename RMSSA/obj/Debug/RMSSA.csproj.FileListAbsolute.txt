@@ -13,3 +13,24 @@ C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMS
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.GenerateResource.Cache
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.exe
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.pdb
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA.mdf
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA_log.ldf
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.exe.config
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.exe
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.pdb
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\MainWindow.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\App.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA_Content.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA_MarkupCompile.cache
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA_MarkupCompile.lref
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\MainWindow.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.g.resources
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.Properties.Resources.resources
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.GenerateResource.cache
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.CoreCompileInputs.cache
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.exe
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.pdb
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\1.jpg
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\2.jpg
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\3.jpg
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\4.jpg
