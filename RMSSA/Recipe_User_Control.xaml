@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="RMSSA.Recipe_User_Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RMSSA"
+             mc:Ignorable="d" 
+             d:DesignHeight="100.443" d:DesignWidth="1000">
+    <!--this screen contains template for the item i-e 3 recipes pe row-->
+    <Grid Background="#FFECEBD6" HorizontalAlignment="Left" Width="1000" Height="auto" VerticalAlignment="Top" Margin="0,0,0,-24">
+        <Grid Name="Left" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="auto" Margin="0,10,0,0"/>
+        <Grid Name="Center" HorizontalAlignment="Left" Height="auto" Margin="335,10,0,0" VerticalAlignment="Top" Width="auto"/>
+        <Grid Name="Right" HorizontalAlignment="Left" Height="auto" Margin="670,10,0,0" VerticalAlignment="Top" Width="auto"/>
+
+    </Grid>
+</UserControl>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMSSA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True">
+        Title="MainWindow" Height="744" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" ResizeMode="CanMinimize" > 
     <Grid>
         <Grid.ColumnDefinitions/>
         <Grid HorizontalAlignment="Left" Height="72" Margin="10,10,-8,0" VerticalAlignment="Top" Width="1014">
@@ -18,6 +18,26 @@
                 </TextBox.Resources>
             </TextBox>
         </Grid>
-        <Image x:Name="slider_image" HorizontalAlignment="Left" Height="285" Margin="10,82,0,0" VerticalAlignment="Top" Width="996"/>
+        <Grid HorizontalAlignment="Left" Height="258" Margin="10,87,-8,0" VerticalAlignment="Top" Width="1014">
+            <Image x:Name="slider_image" Margin="10,0,10,10"/>
+        </Grid>
+        <!--<StackPanel Name="Stack_Panel" Height="200" Width="1000" Margin="13,345,3,0" VerticalAlignment="Top"/>-->
+        <ScrollViewer CanContentScroll="True" SnapsToDevicePixels="True" VerticalScrollBarVisibility="Visible" PanningMode="VerticalOnly" Margin="10,350,10,0">
+            <StackPanel Height="auto" Name="Stack_Panel" VerticalAlignment="Top" Width="auto" Orientation="Vertical" CanHorizontallyScroll="False" CanVerticallyScroll="True" ForceCursor="False" SnapsToDevicePixels="True" >
+            </StackPanel>
+        </ScrollViewer>
+
+        <!--<Grid Name="RecipeContainerGrid" HorizontalAlignment="Right" Margin="0,345,10,10" Width="996">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>-->
+
+
     </Grid>
 </Window>
