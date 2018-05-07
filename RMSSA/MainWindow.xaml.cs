@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using RMSSA.Utils;
+
 namespace RMSSA
 {
     /// <summary>
@@ -24,8 +26,32 @@ namespace RMSSA
         public MainWindow()
         {
             InitializeComponent();
+            setupWindow();
             change_slider_image();
         }
+
+
+        /*
+        * If User Logged In -----> Show User Related Information
+        * Else Hide User specific Information
+        * */
+        private void setupWindow()
+        {
+            //Check  if user is logged in
+            if(Session.USER_ID != -1)
+            {
+                //user is logged in
+                panel_btn.Visibility = Visibility.Visible;
+            }
+
+            else
+            {
+                //Normal Viewer
+                panel_btn.Visibility = Visibility.Collapsed;
+            }
+        }
+
+
 
 
         private void search_txt_GotFocus(object sender, RoutedEventArgs e)
@@ -56,5 +82,8 @@ namespace RMSSA
             this.Close();
 
         }
+
+
+        
     }
 }
