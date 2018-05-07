@@ -77,13 +77,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IngredientsWindow.xaml.cs">
+      <DependentUpon>IngredientsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestingDisplayWindow.xaml.cs">
+      <DependentUpon>TestingDisplayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserPanelWindow.xaml.cs">
       <DependentUpon>UserPanelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Session.cs" />
+    <Page Include="IngredientsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestingDisplayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

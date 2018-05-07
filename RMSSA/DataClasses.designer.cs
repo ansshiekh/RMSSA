@@ -33,9 +33,9 @@ namespace RMSSA
     partial void InsertComment(Comment instance);
     partial void UpdateComment(Comment instance);
     partial void DeleteComment(Comment instance);
-    partial void InsertUtensil(Utensil instance);
-    partial void UpdateUtensil(Utensil instance);
-    partial void DeleteUtensil(Utensil instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     partial void InsertIngredient(Ingredient instance);
     partial void UpdateIngredient(Ingredient instance);
     partial void DeleteIngredient(Ingredient instance);
@@ -48,9 +48,9 @@ namespace RMSSA
     partial void InsertTag(Tag instance);
     partial void UpdateTag(Tag instance);
     partial void DeleteTag(Tag instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertUtensil(Utensil instance);
+    partial void UpdateUtensil(Utensil instance);
+    partial void DeleteUtensil(Utensil instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -91,11 +91,11 @@ namespace RMSSA
 			}
 		}
 		
-		public System.Data.Linq.Table<Utensil> Utensils
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<Utensil>();
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -131,11 +131,11 @@ namespace RMSSA
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<Utensil> Utensils
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<Utensil>();
 			}
 		}
 	}
@@ -156,9 +156,9 @@ namespace RMSSA
 		
 		private System.Nullable<int> _Comment_Recipe_Id;
 		
-		private EntityRef<Recipe> _Recipe;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Recipe> _Recipe;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -178,8 +178,8 @@ namespace RMSSA
 		
 		public Comment()
 		{
-			this._Recipe = default(EntityRef<Recipe>);
 			this._User = default(EntityRef<User>);
+			this._Recipe = default(EntityRef<Recipe>);
 			OnCreated();
 		}
 		
@@ -291,40 +291,6 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Comment", Storage="_Recipe", ThisKey="Comment_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
-		public Recipe Recipe
-		{
-			get
-			{
-				return this._Recipe.Entity;
-			}
-			set
-			{
-				Recipe previousValue = this._Recipe.Entity;
-				if (((previousValue != value) 
-							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Recipe.Entity = null;
-						previousValue.Comments.Remove(this);
-					}
-					this._Recipe.Entity = value;
-					if ((value != null))
-					{
-						value.Comments.Add(this);
-						this._Comment_Recipe_Id = value.Recipe_Id;
-					}
-					else
-					{
-						this._Comment_Recipe_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Recipe");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_User", ThisKey="Comment_User_Id", OtherKey="User_Id", IsForeignKey=true)]
 		public User User
 		{
@@ -359,306 +325,7 @@ namespace RMSSA
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Utensils")]
-	public partial class Utensil : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Utensil_Id;
-		
-		private string _Utensil_Name;
-		
-		private System.Data.Linq.Binary _Utensil_Img;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUtensil_IdChanging(int value);
-    partial void OnUtensil_IdChanged();
-    partial void OnUtensil_NameChanging(string value);
-    partial void OnUtensil_NameChanged();
-    partial void OnUtensil_ImgChanging(System.Data.Linq.Binary value);
-    partial void OnUtensil_ImgChanged();
-    #endregion
-		
-		public Utensil()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Utensil_Id
-		{
-			get
-			{
-				return this._Utensil_Id;
-			}
-			set
-			{
-				if ((this._Utensil_Id != value))
-				{
-					this.OnUtensil_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Id = value;
-					this.SendPropertyChanged("Utensil_Id");
-					this.OnUtensil_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Name", DbType="VarChar(50)")]
-		public string Utensil_Name
-		{
-			get
-			{
-				return this._Utensil_Name;
-			}
-			set
-			{
-				if ((this._Utensil_Name != value))
-				{
-					this.OnUtensil_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Name = value;
-					this.SendPropertyChanged("Utensil_Name");
-					this.OnUtensil_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Utensil_Img
-		{
-			get
-			{
-				return this._Utensil_Img;
-			}
-			set
-			{
-				if ((this._Utensil_Img != value))
-				{
-					this.OnUtensil_ImgChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Img = value;
-					this.SendPropertyChanged("Utensil_Img");
-					this.OnUtensil_ImgChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredients")]
-	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Ingredient_Id;
-		
-		private string _Ingredient_Name;
-		
-		private string _Ingredient_Description;
-		
-		private System.Data.Linq.Binary _Ingredient_Img;
-		
-		private string _Ingredient_Quantity;
-		
-		private System.Nullable<int> _Ingredient_Recipe_Id;
-		
-		private EntityRef<Recipe> _Recipe;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIngredient_IdChanging(int value);
-    partial void OnIngredient_IdChanged();
-    partial void OnIngredient_NameChanging(string value);
-    partial void OnIngredient_NameChanged();
-    partial void OnIngredient_DescriptionChanging(string value);
-    partial void OnIngredient_DescriptionChanged();
-    partial void OnIngredient_ImgChanging(System.Data.Linq.Binary value);
-    partial void OnIngredient_ImgChanged();
-    partial void OnIngredient_QuantityChanging(string value);
-    partial void OnIngredient_QuantityChanged();
-    partial void OnIngredient_Recipe_IdChanging(System.Nullable<int> value);
-    partial void OnIngredient_Recipe_IdChanged();
-    #endregion
-		
-		public Ingredient()
-		{
-			this._Recipe = default(EntityRef<Recipe>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Ingredient_Id
-		{
-			get
-			{
-				return this._Ingredient_Id;
-			}
-			set
-			{
-				if ((this._Ingredient_Id != value))
-				{
-					this.OnIngredient_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Id = value;
-					this.SendPropertyChanged("Ingredient_Id");
-					this.OnIngredient_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Name", DbType="VarChar(50)")]
-		public string Ingredient_Name
-		{
-			get
-			{
-				return this._Ingredient_Name;
-			}
-			set
-			{
-				if ((this._Ingredient_Name != value))
-				{
-					this.OnIngredient_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Name = value;
-					this.SendPropertyChanged("Ingredient_Name");
-					this.OnIngredient_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Ingredient_Description
-		{
-			get
-			{
-				return this._Ingredient_Description;
-			}
-			set
-			{
-				if ((this._Ingredient_Description != value))
-				{
-					this.OnIngredient_DescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Description = value;
-					this.SendPropertyChanged("Ingredient_Description");
-					this.OnIngredient_DescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Ingredient_Img
-		{
-			get
-			{
-				return this._Ingredient_Img;
-			}
-			set
-			{
-				if ((this._Ingredient_Img != value))
-				{
-					this.OnIngredient_ImgChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Img = value;
-					this.SendPropertyChanged("Ingredient_Img");
-					this.OnIngredient_ImgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Quantity", DbType="NChar(10)")]
-		public string Ingredient_Quantity
-		{
-			get
-			{
-				return this._Ingredient_Quantity;
-			}
-			set
-			{
-				if ((this._Ingredient_Quantity != value))
-				{
-					this.OnIngredient_QuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Quantity = value;
-					this.SendPropertyChanged("Ingredient_Quantity");
-					this.OnIngredient_QuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Recipe_Id", DbType="Int")]
-		public System.Nullable<int> Ingredient_Recipe_Id
-		{
-			get
-			{
-				return this._Ingredient_Recipe_Id;
-			}
-			set
-			{
-				if ((this._Ingredient_Recipe_Id != value))
-				{
-					if (this._Recipe.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIngredient_Recipe_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Ingredient_Recipe_Id = value;
-					this.SendPropertyChanged("Ingredient_Recipe_Id");
-					this.OnIngredient_Recipe_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Recipe", ThisKey="Ingredient_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Comment", Storage="_Recipe", ThisKey="Comment_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
 		public Recipe Recipe
 		{
 			get
@@ -675,657 +342,17 @@ namespace RMSSA
 					if ((previousValue != null))
 					{
 						this._Recipe.Entity = null;
-						previousValue.Ingredients.Remove(this);
+						previousValue.Comments.Remove(this);
 					}
 					this._Recipe.Entity = value;
 					if ((value != null))
 					{
-						value.Ingredients.Add(this);
-						this._Ingredient_Recipe_Id = value.Recipe_Id;
+						value.Comments.Add(this);
+						this._Comment_Recipe_Id = value.Recipe_Id;
 					}
 					else
 					{
-						this._Ingredient_Recipe_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Recipe");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Instruction")]
-	public partial class Instruction : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Instruction_Id;
-		
-		private System.Nullable<int> _Instruction_Number;
-		
-		private string _Instruction_Description;
-		
-		private System.Data.Linq.Binary _Instruction_Img;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnInstruction_IdChanging(int value);
-    partial void OnInstruction_IdChanged();
-    partial void OnInstruction_NumberChanging(System.Nullable<int> value);
-    partial void OnInstruction_NumberChanged();
-    partial void OnInstruction_DescriptionChanging(string value);
-    partial void OnInstruction_DescriptionChanged();
-    partial void OnInstruction_ImgChanging(System.Data.Linq.Binary value);
-    partial void OnInstruction_ImgChanged();
-    #endregion
-		
-		public Instruction()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Instruction_Id
-		{
-			get
-			{
-				return this._Instruction_Id;
-			}
-			set
-			{
-				if ((this._Instruction_Id != value))
-				{
-					this.OnInstruction_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Instruction_Id = value;
-					this.SendPropertyChanged("Instruction_Id");
-					this.OnInstruction_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Number", DbType="Int")]
-		public System.Nullable<int> Instruction_Number
-		{
-			get
-			{
-				return this._Instruction_Number;
-			}
-			set
-			{
-				if ((this._Instruction_Number != value))
-				{
-					this.OnInstruction_NumberChanging(value);
-					this.SendPropertyChanging();
-					this._Instruction_Number = value;
-					this.SendPropertyChanged("Instruction_Number");
-					this.OnInstruction_NumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Instruction_Description
-		{
-			get
-			{
-				return this._Instruction_Description;
-			}
-			set
-			{
-				if ((this._Instruction_Description != value))
-				{
-					this.OnInstruction_DescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Instruction_Description = value;
-					this.SendPropertyChanged("Instruction_Description");
-					this.OnInstruction_DescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Instruction_Img
-		{
-			get
-			{
-				return this._Instruction_Img;
-			}
-			set
-			{
-				if ((this._Instruction_Img != value))
-				{
-					this.OnInstruction_ImgChanging(value);
-					this.SendPropertyChanging();
-					this._Instruction_Img = value;
-					this.SendPropertyChanged("Instruction_Img");
-					this.OnInstruction_ImgChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Recipes")]
-	public partial class Recipe : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Recipe_Id;
-		
-		private string _Recipe_Name;
-		
-		private string _Recipe_Subtitle;
-		
-		private System.Nullable<double> _Recipe_Rating;
-		
-		private string _Recipe_Description;
-		
-		private string _Recipe_PreperationTime;
-		
-		private string _Recipe_Difficulty;
-		
-		private System.Nullable<int> _Recipe_User_Id;
-		
-		private EntitySet<Comment> _Comments;
-		
-		private EntitySet<Ingredient> _Ingredients;
-		
-		private EntitySet<Tag> _Tags;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRecipe_IdChanging(int value);
-    partial void OnRecipe_IdChanged();
-    partial void OnRecipe_NameChanging(string value);
-    partial void OnRecipe_NameChanged();
-    partial void OnRecipe_SubtitleChanging(string value);
-    partial void OnRecipe_SubtitleChanged();
-    partial void OnRecipe_RatingChanging(System.Nullable<double> value);
-    partial void OnRecipe_RatingChanged();
-    partial void OnRecipe_DescriptionChanging(string value);
-    partial void OnRecipe_DescriptionChanged();
-    partial void OnRecipe_PreperationTimeChanging(string value);
-    partial void OnRecipe_PreperationTimeChanged();
-    partial void OnRecipe_DifficultyChanging(string value);
-    partial void OnRecipe_DifficultyChanged();
-    partial void OnRecipe_User_IdChanging(System.Nullable<int> value);
-    partial void OnRecipe_User_IdChanged();
-    #endregion
-		
-		public Recipe()
-		{
-			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
-			this._Ingredients = new EntitySet<Ingredient>(new Action<Ingredient>(this.attach_Ingredients), new Action<Ingredient>(this.detach_Ingredients));
-			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Recipe_Id
-		{
-			get
-			{
-				return this._Recipe_Id;
-			}
-			set
-			{
-				if ((this._Recipe_Id != value))
-				{
-					this.OnRecipe_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Id = value;
-					this.SendPropertyChanged("Recipe_Id");
-					this.OnRecipe_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Name", DbType="VarChar(50)")]
-		public string Recipe_Name
-		{
-			get
-			{
-				return this._Recipe_Name;
-			}
-			set
-			{
-				if ((this._Recipe_Name != value))
-				{
-					this.OnRecipe_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Name = value;
-					this.SendPropertyChanged("Recipe_Name");
-					this.OnRecipe_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Subtitle", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Recipe_Subtitle
-		{
-			get
-			{
-				return this._Recipe_Subtitle;
-			}
-			set
-			{
-				if ((this._Recipe_Subtitle != value))
-				{
-					this.OnRecipe_SubtitleChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Subtitle = value;
-					this.SendPropertyChanged("Recipe_Subtitle");
-					this.OnRecipe_SubtitleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Rating", DbType="Float")]
-		public System.Nullable<double> Recipe_Rating
-		{
-			get
-			{
-				return this._Recipe_Rating;
-			}
-			set
-			{
-				if ((this._Recipe_Rating != value))
-				{
-					this.OnRecipe_RatingChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Rating = value;
-					this.SendPropertyChanged("Recipe_Rating");
-					this.OnRecipe_RatingChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Recipe_Description
-		{
-			get
-			{
-				return this._Recipe_Description;
-			}
-			set
-			{
-				if ((this._Recipe_Description != value))
-				{
-					this.OnRecipe_DescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Description = value;
-					this.SendPropertyChanged("Recipe_Description");
-					this.OnRecipe_DescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_PreperationTime", DbType="NChar(10)")]
-		public string Recipe_PreperationTime
-		{
-			get
-			{
-				return this._Recipe_PreperationTime;
-			}
-			set
-			{
-				if ((this._Recipe_PreperationTime != value))
-				{
-					this.OnRecipe_PreperationTimeChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_PreperationTime = value;
-					this.SendPropertyChanged("Recipe_PreperationTime");
-					this.OnRecipe_PreperationTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Difficulty", DbType="NChar(10)")]
-		public string Recipe_Difficulty
-		{
-			get
-			{
-				return this._Recipe_Difficulty;
-			}
-			set
-			{
-				if ((this._Recipe_Difficulty != value))
-				{
-					this.OnRecipe_DifficultyChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_Difficulty = value;
-					this.SendPropertyChanged("Recipe_Difficulty");
-					this.OnRecipe_DifficultyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_User_Id", DbType="Int")]
-		public System.Nullable<int> Recipe_User_Id
-		{
-			get
-			{
-				return this._Recipe_User_Id;
-			}
-			set
-			{
-				if ((this._Recipe_User_Id != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRecipe_User_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Recipe_User_Id = value;
-					this.SendPropertyChanged("Recipe_User_Id");
-					this.OnRecipe_User_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Comment", Storage="_Comments", ThisKey="Recipe_Id", OtherKey="Comment_Recipe_Id")]
-		public EntitySet<Comment> Comments
-		{
-			get
-			{
-				return this._Comments;
-			}
-			set
-			{
-				this._Comments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Ingredients", ThisKey="Recipe_Id", OtherKey="Ingredient_Recipe_Id")]
-		public EntitySet<Ingredient> Ingredients
-		{
-			get
-			{
-				return this._Ingredients;
-			}
-			set
-			{
-				this._Ingredients.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Tags", ThisKey="Recipe_Id", OtherKey="Tag_Recipe_Id")]
-		public EntitySet<Tag> Tags
-		{
-			get
-			{
-				return this._Tags;
-			}
-			set
-			{
-				this._Tags.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_User", ThisKey="Recipe_User_Id", OtherKey="User_Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Recipes.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Recipes.Add(this);
-						this._Recipe_User_Id = value.User_Id;
-					}
-					else
-					{
-						this._Recipe_User_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Comments(Comment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = this;
-		}
-		
-		private void detach_Comments(Comment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = null;
-		}
-		
-		private void attach_Ingredients(Ingredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = this;
-		}
-		
-		private void detach_Ingredients(Ingredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = null;
-		}
-		
-		private void attach_Tags(Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = this;
-		}
-		
-		private void detach_Tags(Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tags")]
-	public partial class Tag : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Tag_Id;
-		
-		private string _Tag_Name;
-		
-		private System.Nullable<int> _Tag_Recipe_Id;
-		
-		private EntityRef<Recipe> _Recipe;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTag_IdChanging(int value);
-    partial void OnTag_IdChanged();
-    partial void OnTag_NameChanging(string value);
-    partial void OnTag_NameChanged();
-    partial void OnTag_Recipe_IdChanging(System.Nullable<int> value);
-    partial void OnTag_Recipe_IdChanged();
-    #endregion
-		
-		public Tag()
-		{
-			this._Recipe = default(EntityRef<Recipe>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Tag_Id
-		{
-			get
-			{
-				return this._Tag_Id;
-			}
-			set
-			{
-				if ((this._Tag_Id != value))
-				{
-					this.OnTag_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Tag_Id = value;
-					this.SendPropertyChanged("Tag_Id");
-					this.OnTag_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Name", DbType="NChar(10)")]
-		public string Tag_Name
-		{
-			get
-			{
-				return this._Tag_Name;
-			}
-			set
-			{
-				if ((this._Tag_Name != value))
-				{
-					this.OnTag_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Tag_Name = value;
-					this.SendPropertyChanged("Tag_Name");
-					this.OnTag_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Recipe_Id", DbType="Int")]
-		public System.Nullable<int> Tag_Recipe_Id
-		{
-			get
-			{
-				return this._Tag_Recipe_Id;
-			}
-			set
-			{
-				if ((this._Tag_Recipe_Id != value))
-				{
-					if (this._Recipe.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTag_Recipe_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Tag_Recipe_Id = value;
-					this.SendPropertyChanged("Tag_Recipe_Id");
-					this.OnTag_Recipe_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Recipe", ThisKey="Tag_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
-		public Recipe Recipe
-		{
-			get
-			{
-				return this._Recipe.Entity;
-			}
-			set
-			{
-				Recipe previousValue = this._Recipe.Entity;
-				if (((previousValue != value) 
-							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Recipe.Entity = null;
-						previousValue.Tags.Remove(this);
-					}
-					this._Recipe.Entity = value;
-					if ((value != null))
-					{
-						value.Tags.Add(this);
-						this._Tag_Recipe_Id = value.Recipe_Id;
-					}
-					else
-					{
-						this._Tag_Recipe_Id = default(Nullable<int>);
+						this._Comment_Recipe_Id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Recipe");
 				}
@@ -1564,6 +591,1165 @@ namespace RMSSA
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredients")]
+	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Ingredient_Id;
+		
+		private string _Ingredient_Name;
+		
+		private string _Ingredient_Description;
+		
+		private System.Data.Linq.Binary _Ingredient_Img;
+		
+		private string _Ingredient_Quantity;
+		
+		private System.Nullable<int> _Ingredient_Recipe_Id;
+		
+		private EntityRef<Recipe> _Recipe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIngredient_IdChanging(int value);
+    partial void OnIngredient_IdChanged();
+    partial void OnIngredient_NameChanging(string value);
+    partial void OnIngredient_NameChanged();
+    partial void OnIngredient_DescriptionChanging(string value);
+    partial void OnIngredient_DescriptionChanged();
+    partial void OnIngredient_ImgChanging(System.Data.Linq.Binary value);
+    partial void OnIngredient_ImgChanged();
+    partial void OnIngredient_QuantityChanging(string value);
+    partial void OnIngredient_QuantityChanged();
+    partial void OnIngredient_Recipe_IdChanging(System.Nullable<int> value);
+    partial void OnIngredient_Recipe_IdChanged();
+    #endregion
+		
+		public Ingredient()
+		{
+			this._Recipe = default(EntityRef<Recipe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Ingredient_Id
+		{
+			get
+			{
+				return this._Ingredient_Id;
+			}
+			set
+			{
+				if ((this._Ingredient_Id != value))
+				{
+					this.OnIngredient_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Id = value;
+					this.SendPropertyChanged("Ingredient_Id");
+					this.OnIngredient_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Name", DbType="VarChar(50)")]
+		public string Ingredient_Name
+		{
+			get
+			{
+				return this._Ingredient_Name;
+			}
+			set
+			{
+				if ((this._Ingredient_Name != value))
+				{
+					this.OnIngredient_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Name = value;
+					this.SendPropertyChanged("Ingredient_Name");
+					this.OnIngredient_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Ingredient_Description
+		{
+			get
+			{
+				return this._Ingredient_Description;
+			}
+			set
+			{
+				if ((this._Ingredient_Description != value))
+				{
+					this.OnIngredient_DescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Description = value;
+					this.SendPropertyChanged("Ingredient_Description");
+					this.OnIngredient_DescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Ingredient_Img
+		{
+			get
+			{
+				return this._Ingredient_Img;
+			}
+			set
+			{
+				if ((this._Ingredient_Img != value))
+				{
+					this.OnIngredient_ImgChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Img = value;
+					this.SendPropertyChanged("Ingredient_Img");
+					this.OnIngredient_ImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Quantity", DbType="VarChar(50)")]
+		public string Ingredient_Quantity
+		{
+			get
+			{
+				return this._Ingredient_Quantity;
+			}
+			set
+			{
+				if ((this._Ingredient_Quantity != value))
+				{
+					this.OnIngredient_QuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Quantity = value;
+					this.SendPropertyChanged("Ingredient_Quantity");
+					this.OnIngredient_QuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ingredient_Recipe_Id", DbType="Int")]
+		public System.Nullable<int> Ingredient_Recipe_Id
+		{
+			get
+			{
+				return this._Ingredient_Recipe_Id;
+			}
+			set
+			{
+				if ((this._Ingredient_Recipe_Id != value))
+				{
+					if (this._Recipe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIngredient_Recipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Ingredient_Recipe_Id = value;
+					this.SendPropertyChanged("Ingredient_Recipe_Id");
+					this.OnIngredient_Recipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Recipe", ThisKey="Ingredient_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		public Recipe Recipe
+		{
+			get
+			{
+				return this._Recipe.Entity;
+			}
+			set
+			{
+				Recipe previousValue = this._Recipe.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipe.Entity = null;
+						previousValue.Ingredients.Remove(this);
+					}
+					this._Recipe.Entity = value;
+					if ((value != null))
+					{
+						value.Ingredients.Add(this);
+						this._Ingredient_Recipe_Id = value.Recipe_Id;
+					}
+					else
+					{
+						this._Ingredient_Recipe_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Recipe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Instruction")]
+	public partial class Instruction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Instruction_Id;
+		
+		private System.Nullable<int> _Instruction_Number;
+		
+		private string _Instruction_Description;
+		
+		private System.Data.Linq.Binary _Instruction_Img;
+		
+		private System.Nullable<int> _Instruction_Recipe_Id;
+		
+		private EntityRef<Recipe> _Recipe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInstruction_IdChanging(int value);
+    partial void OnInstruction_IdChanged();
+    partial void OnInstruction_NumberChanging(System.Nullable<int> value);
+    partial void OnInstruction_NumberChanged();
+    partial void OnInstruction_DescriptionChanging(string value);
+    partial void OnInstruction_DescriptionChanged();
+    partial void OnInstruction_ImgChanging(System.Data.Linq.Binary value);
+    partial void OnInstruction_ImgChanged();
+    partial void OnInstruction_Recipe_IdChanging(System.Nullable<int> value);
+    partial void OnInstruction_Recipe_IdChanged();
+    #endregion
+		
+		public Instruction()
+		{
+			this._Recipe = default(EntityRef<Recipe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Instruction_Id
+		{
+			get
+			{
+				return this._Instruction_Id;
+			}
+			set
+			{
+				if ((this._Instruction_Id != value))
+				{
+					this.OnInstruction_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Instruction_Id = value;
+					this.SendPropertyChanged("Instruction_Id");
+					this.OnInstruction_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Number", DbType="Int")]
+		public System.Nullable<int> Instruction_Number
+		{
+			get
+			{
+				return this._Instruction_Number;
+			}
+			set
+			{
+				if ((this._Instruction_Number != value))
+				{
+					this.OnInstruction_NumberChanging(value);
+					this.SendPropertyChanging();
+					this._Instruction_Number = value;
+					this.SendPropertyChanged("Instruction_Number");
+					this.OnInstruction_NumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Instruction_Description
+		{
+			get
+			{
+				return this._Instruction_Description;
+			}
+			set
+			{
+				if ((this._Instruction_Description != value))
+				{
+					this.OnInstruction_DescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Instruction_Description = value;
+					this.SendPropertyChanged("Instruction_Description");
+					this.OnInstruction_DescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Instruction_Img
+		{
+			get
+			{
+				return this._Instruction_Img;
+			}
+			set
+			{
+				if ((this._Instruction_Img != value))
+				{
+					this.OnInstruction_ImgChanging(value);
+					this.SendPropertyChanging();
+					this._Instruction_Img = value;
+					this.SendPropertyChanged("Instruction_Img");
+					this.OnInstruction_ImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instruction_Recipe_Id", DbType="Int")]
+		public System.Nullable<int> Instruction_Recipe_Id
+		{
+			get
+			{
+				return this._Instruction_Recipe_Id;
+			}
+			set
+			{
+				if ((this._Instruction_Recipe_Id != value))
+				{
+					if (this._Recipe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInstruction_Recipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Instruction_Recipe_Id = value;
+					this.SendPropertyChanged("Instruction_Recipe_Id");
+					this.OnInstruction_Recipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Instruction", Storage="_Recipe", ThisKey="Instruction_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		public Recipe Recipe
+		{
+			get
+			{
+				return this._Recipe.Entity;
+			}
+			set
+			{
+				Recipe previousValue = this._Recipe.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipe.Entity = null;
+						previousValue.Instructions.Remove(this);
+					}
+					this._Recipe.Entity = value;
+					if ((value != null))
+					{
+						value.Instructions.Add(this);
+						this._Instruction_Recipe_Id = value.Recipe_Id;
+					}
+					else
+					{
+						this._Instruction_Recipe_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Recipe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Recipes")]
+	public partial class Recipe : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Recipe_Id;
+		
+		private string _Recipe_Name;
+		
+		private string _Recipe_Subtitle;
+		
+		private System.Nullable<double> _Recipe_Rating;
+		
+		private string _Recipe_Description;
+		
+		private string _Recipe_PreperationTime;
+		
+		private string _Recipe_Difficulty;
+		
+		private System.Nullable<int> _Recipe_User_Id;
+		
+		private EntitySet<Comment> _Comments;
+		
+		private EntitySet<Ingredient> _Ingredients;
+		
+		private EntitySet<Instruction> _Instructions;
+		
+		private EntitySet<Tag> _Tags;
+		
+		private EntitySet<Utensil> _Utensils;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRecipe_IdChanging(int value);
+    partial void OnRecipe_IdChanged();
+    partial void OnRecipe_NameChanging(string value);
+    partial void OnRecipe_NameChanged();
+    partial void OnRecipe_SubtitleChanging(string value);
+    partial void OnRecipe_SubtitleChanged();
+    partial void OnRecipe_RatingChanging(System.Nullable<double> value);
+    partial void OnRecipe_RatingChanged();
+    partial void OnRecipe_DescriptionChanging(string value);
+    partial void OnRecipe_DescriptionChanged();
+    partial void OnRecipe_PreperationTimeChanging(string value);
+    partial void OnRecipe_PreperationTimeChanged();
+    partial void OnRecipe_DifficultyChanging(string value);
+    partial void OnRecipe_DifficultyChanged();
+    partial void OnRecipe_User_IdChanging(System.Nullable<int> value);
+    partial void OnRecipe_User_IdChanged();
+    #endregion
+		
+		public Recipe()
+		{
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._Ingredients = new EntitySet<Ingredient>(new Action<Ingredient>(this.attach_Ingredients), new Action<Ingredient>(this.detach_Ingredients));
+			this._Instructions = new EntitySet<Instruction>(new Action<Instruction>(this.attach_Instructions), new Action<Instruction>(this.detach_Instructions));
+			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
+			this._Utensils = new EntitySet<Utensil>(new Action<Utensil>(this.attach_Utensils), new Action<Utensil>(this.detach_Utensils));
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Recipe_Id
+		{
+			get
+			{
+				return this._Recipe_Id;
+			}
+			set
+			{
+				if ((this._Recipe_Id != value))
+				{
+					this.OnRecipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Id = value;
+					this.SendPropertyChanged("Recipe_Id");
+					this.OnRecipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Name", DbType="VarChar(50)")]
+		public string Recipe_Name
+		{
+			get
+			{
+				return this._Recipe_Name;
+			}
+			set
+			{
+				if ((this._Recipe_Name != value))
+				{
+					this.OnRecipe_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Name = value;
+					this.SendPropertyChanged("Recipe_Name");
+					this.OnRecipe_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Subtitle", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Recipe_Subtitle
+		{
+			get
+			{
+				return this._Recipe_Subtitle;
+			}
+			set
+			{
+				if ((this._Recipe_Subtitle != value))
+				{
+					this.OnRecipe_SubtitleChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Subtitle = value;
+					this.SendPropertyChanged("Recipe_Subtitle");
+					this.OnRecipe_SubtitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Rating", DbType="Float")]
+		public System.Nullable<double> Recipe_Rating
+		{
+			get
+			{
+				return this._Recipe_Rating;
+			}
+			set
+			{
+				if ((this._Recipe_Rating != value))
+				{
+					this.OnRecipe_RatingChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Rating = value;
+					this.SendPropertyChanged("Recipe_Rating");
+					this.OnRecipe_RatingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Description", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Recipe_Description
+		{
+			get
+			{
+				return this._Recipe_Description;
+			}
+			set
+			{
+				if ((this._Recipe_Description != value))
+				{
+					this.OnRecipe_DescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Description = value;
+					this.SendPropertyChanged("Recipe_Description");
+					this.OnRecipe_DescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_PreperationTime", DbType="NChar(10)")]
+		public string Recipe_PreperationTime
+		{
+			get
+			{
+				return this._Recipe_PreperationTime;
+			}
+			set
+			{
+				if ((this._Recipe_PreperationTime != value))
+				{
+					this.OnRecipe_PreperationTimeChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_PreperationTime = value;
+					this.SendPropertyChanged("Recipe_PreperationTime");
+					this.OnRecipe_PreperationTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_Difficulty", DbType="NChar(10)")]
+		public string Recipe_Difficulty
+		{
+			get
+			{
+				return this._Recipe_Difficulty;
+			}
+			set
+			{
+				if ((this._Recipe_Difficulty != value))
+				{
+					this.OnRecipe_DifficultyChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_Difficulty = value;
+					this.SendPropertyChanged("Recipe_Difficulty");
+					this.OnRecipe_DifficultyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Recipe_User_Id", DbType="Int")]
+		public System.Nullable<int> Recipe_User_Id
+		{
+			get
+			{
+				return this._Recipe_User_Id;
+			}
+			set
+			{
+				if ((this._Recipe_User_Id != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRecipe_User_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Recipe_User_Id = value;
+					this.SendPropertyChanged("Recipe_User_Id");
+					this.OnRecipe_User_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Comment", Storage="_Comments", ThisKey="Recipe_Id", OtherKey="Comment_Recipe_Id")]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Ingredients", ThisKey="Recipe_Id", OtherKey="Ingredient_Recipe_Id")]
+		public EntitySet<Ingredient> Ingredients
+		{
+			get
+			{
+				return this._Ingredients;
+			}
+			set
+			{
+				this._Ingredients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Instruction", Storage="_Instructions", ThisKey="Recipe_Id", OtherKey="Instruction_Recipe_Id")]
+		public EntitySet<Instruction> Instructions
+		{
+			get
+			{
+				return this._Instructions;
+			}
+			set
+			{
+				this._Instructions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Tags", ThisKey="Recipe_Id", OtherKey="Tag_Recipe_Id")]
+		public EntitySet<Tag> Tags
+		{
+			get
+			{
+				return this._Tags;
+			}
+			set
+			{
+				this._Tags.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Utensils", ThisKey="Recipe_Id", OtherKey="Utensil_Recipe_Id")]
+		public EntitySet<Utensil> Utensils
+		{
+			get
+			{
+				return this._Utensils;
+			}
+			set
+			{
+				this._Utensils.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_User", ThisKey="Recipe_User_Id", OtherKey="User_Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Recipes.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Recipes.Add(this);
+						this._Recipe_User_Id = value.User_Id;
+					}
+					else
+					{
+						this._Recipe_User_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+		
+		private void attach_Ingredients(Ingredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Ingredients(Ingredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+		
+		private void attach_Instructions(Instruction entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Instructions(Instruction entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+		
+		private void attach_Tags(Tag entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Tags(Tag entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+		
+		private void attach_Utensils(Utensil entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Utensils(Utensil entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tags")]
+	public partial class Tag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Tag_Id;
+		
+		private string _Tag_Name;
+		
+		private System.Nullable<int> _Tag_Recipe_Id;
+		
+		private EntityRef<Recipe> _Recipe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTag_IdChanging(int value);
+    partial void OnTag_IdChanged();
+    partial void OnTag_NameChanging(string value);
+    partial void OnTag_NameChanged();
+    partial void OnTag_Recipe_IdChanging(System.Nullable<int> value);
+    partial void OnTag_Recipe_IdChanged();
+    #endregion
+		
+		public Tag()
+		{
+			this._Recipe = default(EntityRef<Recipe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Tag_Id
+		{
+			get
+			{
+				return this._Tag_Id;
+			}
+			set
+			{
+				if ((this._Tag_Id != value))
+				{
+					this.OnTag_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Tag_Id = value;
+					this.SendPropertyChanged("Tag_Id");
+					this.OnTag_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Name", DbType="NChar(10)")]
+		public string Tag_Name
+		{
+			get
+			{
+				return this._Tag_Name;
+			}
+			set
+			{
+				if ((this._Tag_Name != value))
+				{
+					this.OnTag_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Tag_Name = value;
+					this.SendPropertyChanged("Tag_Name");
+					this.OnTag_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tag_Recipe_Id", DbType="Int")]
+		public System.Nullable<int> Tag_Recipe_Id
+		{
+			get
+			{
+				return this._Tag_Recipe_Id;
+			}
+			set
+			{
+				if ((this._Tag_Recipe_Id != value))
+				{
+					if (this._Recipe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTag_Recipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Tag_Recipe_Id = value;
+					this.SendPropertyChanged("Tag_Recipe_Id");
+					this.OnTag_Recipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Recipe", ThisKey="Tag_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		public Recipe Recipe
+		{
+			get
+			{
+				return this._Recipe.Entity;
+			}
+			set
+			{
+				Recipe previousValue = this._Recipe.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipe.Entity = null;
+						previousValue.Tags.Remove(this);
+					}
+					this._Recipe.Entity = value;
+					if ((value != null))
+					{
+						value.Tags.Add(this);
+						this._Tag_Recipe_Id = value.Recipe_Id;
+					}
+					else
+					{
+						this._Tag_Recipe_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Recipe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Utensils")]
+	public partial class Utensil : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Utensil_Id;
+		
+		private string _Utensil_Name;
+		
+		private System.Data.Linq.Binary _Utensil_Img;
+		
+		private System.Nullable<int> _Utensil_Recipe_Id;
+		
+		private EntityRef<Recipe> _Recipe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUtensil_IdChanging(int value);
+    partial void OnUtensil_IdChanged();
+    partial void OnUtensil_NameChanging(string value);
+    partial void OnUtensil_NameChanged();
+    partial void OnUtensil_ImgChanging(System.Data.Linq.Binary value);
+    partial void OnUtensil_ImgChanged();
+    partial void OnUtensil_Recipe_IdChanging(System.Nullable<int> value);
+    partial void OnUtensil_Recipe_IdChanged();
+    #endregion
+		
+		public Utensil()
+		{
+			this._Recipe = default(EntityRef<Recipe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Utensil_Id
+		{
+			get
+			{
+				return this._Utensil_Id;
+			}
+			set
+			{
+				if ((this._Utensil_Id != value))
+				{
+					this.OnUtensil_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Id = value;
+					this.SendPropertyChanged("Utensil_Id");
+					this.OnUtensil_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Name", DbType="VarChar(50)")]
+		public string Utensil_Name
+		{
+			get
+			{
+				return this._Utensil_Name;
+			}
+			set
+			{
+				if ((this._Utensil_Name != value))
+				{
+					this.OnUtensil_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Name = value;
+					this.SendPropertyChanged("Utensil_Name");
+					this.OnUtensil_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Utensil_Img
+		{
+			get
+			{
+				return this._Utensil_Img;
+			}
+			set
+			{
+				if ((this._Utensil_Img != value))
+				{
+					this.OnUtensil_ImgChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Img = value;
+					this.SendPropertyChanged("Utensil_Img");
+					this.OnUtensil_ImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Recipe_Id", DbType="Int")]
+		public System.Nullable<int> Utensil_Recipe_Id
+		{
+			get
+			{
+				return this._Utensil_Recipe_Id;
+			}
+			set
+			{
+				if ((this._Utensil_Recipe_Id != value))
+				{
+					if (this._Recipe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUtensil_Recipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Recipe_Id = value;
+					this.SendPropertyChanged("Utensil_Recipe_Id");
+					this.OnUtensil_Recipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Recipe", ThisKey="Utensil_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		public Recipe Recipe
+		{
+			get
+			{
+				return this._Recipe.Entity;
+			}
+			set
+			{
+				Recipe previousValue = this._Recipe.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipe.Entity = null;
+						previousValue.Utensils.Remove(this);
+					}
+					this._Recipe.Entity = value;
+					if ((value != null))
+					{
+						value.Utensils.Add(this);
+						this._Utensil_Recipe_Id = value.Recipe_Id;
+					}
+					else
+					{
+						this._Utensil_Recipe_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Recipe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

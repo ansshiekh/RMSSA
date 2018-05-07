@@ -109,5 +109,12 @@ namespace RMSSA
             userPanelWindow.Show();
             this.Close();
         }
+
+        private void test_display_btn_Click(object sender, RoutedEventArgs e)
+        {
+            TestingDisplayWindow tw = new TestingDisplayWindow();
+            tw.Show();
+            this.Close();
+        }
     }
 }

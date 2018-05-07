@@ -1,0 +1,29 @@
+﻿<Window x:Class="RMSSA.IngredientsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RMSSA"
+        mc:Ignorable="d"
+        Title="IngredientsWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="ingredient_name_box" HorizontalAlignment="Left" Height="23" Margin="94,99,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ingredient_description_box" HorizontalAlignment="Left" Height="23" Margin="94,127,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ingredient_quantity_box" HorizontalAlignment="Left" Height="23" Margin="94,155,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ingredient_title_lbl" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Ingredients" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="304" Height="60" FontWeight="Bold" FontSize="36"/>
+        <Button x:Name="ingredient_add_btn" Content="Add" HorizontalAlignment="Left" Margin="111,194,0,0" VerticalAlignment="Top" Width="75" Click="ingredient_add_btn_Click"/>
+        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Left" Margin="235,389,0,0" VerticalAlignment="Top" Width="75" Click="back_btn_Click"/>
+        <Button x:Name="done_btn" Content="Done" HorizontalAlignment="Left" Margin="430,389,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.32,0.35" Click="done_btn_Click"/>
+        <TextBox x:Name="instruction_number_box" HorizontalAlignment="Left" Height="23" Margin="519,104,0,0" TextWrapping="Wrap" Text="Number" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="instruction_description_box" HorizontalAlignment="Left" Height="23" Margin="519,132,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="ingredient_title_lbl_Copy" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Instructions" HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" Width="304" Height="60" FontWeight="Bold" FontSize="36"/>
+        <Button x:Name="instruction_add_btn" Content="Add" HorizontalAlignment="Left" Margin="536,199,0,0" VerticalAlignment="Top" Width="75" Click="instruction_add_btn_Click"/>
+        <TextBox x:Name="tags_name_box" HorizontalAlignment="Left" Height="24" Margin="519,298,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" />
+        <Label x:Name="tags_title_lbl" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Tags" HorizontalAlignment="Left" Margin="476,224,0,0" VerticalAlignment="Top" Width="210" Height="69" FontWeight="Bold" FontSize="36"/>
+        <Button x:Name="tags_add_btn" Content="Add" HorizontalAlignment="Left" Margin="536,327,0,0" VerticalAlignment="Top" Width="75" Click="tags_add_btn_Click"/>
+        <TextBox x:Name="utensils_name_box" HorizontalAlignment="Left" Height="24" Margin="94,303,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Width="120" />
+        <Label x:Name="utensils_title_lbl" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Utensils" HorizontalAlignment="Left" Margin="51,229,0,0" VerticalAlignment="Top" Width="210" Height="69" FontWeight="Bold" FontSize="36"/>
+        <Button x:Name="utensils_add_btn" Content="Add" HorizontalAlignment="Left" Margin="111,332,0,0" VerticalAlignment="Top" Width="75" Click="utensils_add_btn_Click"/>
+
+    </Grid>
+</Window>
