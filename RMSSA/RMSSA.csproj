@@ -80,6 +80,9 @@
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserPanelWindow.xaml.cs">
+      <DependentUpon>UserPanelWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Session.cs" />
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
@@ -106,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserPanelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -41,3 +41,5 @@ D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.CopyComplete
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.baml
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA.mdf
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.baml
