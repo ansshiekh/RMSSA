@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMSSA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" WindowState="Maximized">
+        Title="MainWindow" Height="744" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" ResizeMode="CanMinimize" > 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="661*"/>
