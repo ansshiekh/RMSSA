@@ -1,0 +1,23 @@
+﻿<Window x:Class="RMSSA.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RMSSA"
+        mc:Ignorable="d"
+        Title="SignUpWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="username_lbl" Content="Username" Margin="179,101,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="147" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="username_box" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="390,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Label x:Name="password_lbl" Content="Password" Margin="179,146,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="147" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="password_box" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="390,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Label x:Name="country_lbl" Content="Country" Margin="179,250,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="147" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="country_box" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="390,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Label x:Name="city_lbl" Content="City" Margin="179,301,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="147" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="city_box" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="390,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Label x:Name="confirm_password_lbl" Content="Confirm Password&#xD;&#xA;" Margin="179,193,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" Width="147" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <TextBox x:Name="confirm_password_box" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="390,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Button x:Name="done_btn" Content="Done" HorizontalAlignment="Left" Margin="449,359,0,0" VerticalAlignment="Top" Width="104" Height="28" Click="done_btn_Click"/>
+        <Button x:Name="cancel_btn" Content="Cancel" HorizontalAlignment="Left" Margin="253,359,0,0" VerticalAlignment="Top" Width="104" Height="28" Click="cancel_btn_Click"/>
+    </Grid>
+</Window>

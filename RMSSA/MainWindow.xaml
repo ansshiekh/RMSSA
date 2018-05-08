@@ -7,37 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="744" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" ResizeMode="CanMinimize" > 
     <Grid>
-        <Grid.ColumnDefinitions/>
-        <Grid HorizontalAlignment="Left" Height="72" Margin="10,10,-8,0" VerticalAlignment="Top" Width="1014">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="661*"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="282*"/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Height="72" Margin="10,10,-8,0" VerticalAlignment="Top" Width="1014" Grid.ColumnSpan="3">
             <Label x:Name="title_txt" Content="RMSSA" HorizontalAlignment="Left" Margin="0,-4,0,12" FontSize="48" FontFamily="Algerian" Width="170" Height="64" VerticalAlignment="Bottom"/>
-            <TextBox Text="Search..." Name="search_txt" Margin="309,-2,264,12" Opacity="0.8" Background="#B291A64B" SelectionBrush="#B20078D7" FontSize="36" FontFamily="Arial" TextDecorations="{x:Null}" Foreground="Black" ToolTip="Search" GotFocus="search_txt_GotFocus" Height="62" VerticalAlignment="Bottom" >
+            <TextBox Text="Search..." Name="search_txt" Margin="200,5,350,12" Opacity="0.8" Background="#B291A64B" SelectionBrush="#B20078D7" FontSize="30" FontFamily="Arial" TextDecorations="{x:Null}" Foreground="Black" ToolTip="Search" GotFocus="search_txt_GotFocus" Height="62" VerticalAlignment="Bottom" VerticalContentAlignment="Center" >
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
+            <Button Name="login_btn" Content="Login" HorizontalAlignment="Left" Margin="881,10,0,0" VerticalAlignment="Top" Width="123" Height="45" Click="LoginBtn_Click" RenderTransformOrigin="0.224,0.66"/>
+
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="258" Margin="10,87,-8,0" VerticalAlignment="Top" Width="1014">
-            <Image x:Name="slider_image" Margin="10,0,10,10"/>
-        </Grid>
-        <!--<StackPanel Name="Stack_Panel" Height="200" Width="1000" Margin="13,345,3,0" VerticalAlignment="Top"/>-->
-        <ScrollViewer CanContentScroll="True" SnapsToDevicePixels="True" VerticalScrollBarVisibility="Visible" PanningMode="VerticalOnly" Margin="10,350,10,0">
-            <StackPanel Height="auto" Name="Stack_Panel" VerticalAlignment="Top" Width="auto" Orientation="Vertical" CanHorizontallyScroll="False" CanVerticallyScroll="True" ForceCursor="False" SnapsToDevicePixels="True" >
-            </StackPanel>
-        </ScrollViewer>
-
-        <!--<Grid Name="RecipeContainerGrid" HorizontalAlignment="Right" Margin="0,345,10,10" Width="996">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-        </Grid>-->
-
-
+        <Image x:Name="slider_image" HorizontalAlignment="Left" Height="285" Margin="10,82,0,0" VerticalAlignment="Top" Width="996" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>
