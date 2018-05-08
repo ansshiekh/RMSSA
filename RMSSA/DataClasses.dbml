@@ -7,15 +7,19 @@
       <Column Name="Comment_Time" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Comment_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Comment_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Recipe_Comment" Member="Recipe" ThisKey="Comment_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
       <Association Name="User_Comment" Member="User" ThisKey="Comment_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="Recipe_Comment" Member="Recipe" ThisKey="Comment_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Utensils" Member="Utensils">
-    <Type Name="Utensil">
-      <Column Name="Utensil_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Utensil_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Utensil_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="User_Id" OtherKey="Comment_User_Id" Type="Comment" />
+      <Association Name="User_Recipe" Member="Recipes" ThisKey="User_Id" OtherKey="Recipe_User_Id" Type="Recipe" />
     </Type>
   </Table>
   <Table Name="dbo.Ingredients" Member="Ingredients">
@@ -24,7 +28,7 @@
       <Column Name="Ingredient_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Ingredient_Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Ingredient_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Ingredient_Quantity" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Ingredient_Quantity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Ingredient_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Recipe_Ingredient" Member="Recipe" ThisKey="Ingredient_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
     </Type>
@@ -35,6 +39,8 @@
       <Column Name="Instruction_Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Instruction_Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Instruction_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Instruction_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Recipe_Instruction" Member="Recipe" ThisKey="Instruction_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Recipes" Member="Recipes">
@@ -49,7 +55,9 @@
       <Column Name="Recipe_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Recipe_Comment" Member="Comments" ThisKey="Recipe_Id" OtherKey="Comment_Recipe_Id" Type="Comment" />
       <Association Name="Recipe_Ingredient" Member="Ingredients" ThisKey="Recipe_Id" OtherKey="Ingredient_Recipe_Id" Type="Ingredient" />
+      <Association Name="Recipe_Instruction" Member="Instructions" ThisKey="Recipe_Id" OtherKey="Instruction_Recipe_Id" Type="Instruction" />
       <Association Name="Recipe_Tag" Member="Tags" ThisKey="Recipe_Id" OtherKey="Tag_Recipe_Id" Type="Tag" />
+      <Association Name="Recipe_Utensil" Member="Utensils" ThisKey="Recipe_Id" OtherKey="Utensil_Recipe_Id" Type="Utensil" />
       <Association Name="User_Recipe" Member="User" ThisKey="Recipe_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -61,15 +69,13 @@
       <Association Name="Recipe_Tag" Member="Recipe" ThisKey="Tag_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="User_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="User_Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="User_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="User_City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="User_Comment" Member="Comments" ThisKey="User_Id" OtherKey="Comment_User_Id" Type="Comment" />
-      <Association Name="User_Recipe" Member="Recipes" ThisKey="User_Id" OtherKey="Recipe_User_Id" Type="Recipe" />
+  <Table Name="dbo.Utensils" Member="Utensils">
+    <Type Name="Utensil">
+      <Column Name="Utensil_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Utensil_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Utensil_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Utensil_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Recipe_Utensil" Member="Recipe" ThisKey="Utensil_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

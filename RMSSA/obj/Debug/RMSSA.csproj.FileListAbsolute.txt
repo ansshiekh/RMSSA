@@ -13,7 +13,6 @@ C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMS
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.GenerateResource.Cache
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.exe
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\RMSSA.pdb
-D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA_log.ldf
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.exe.config
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.exe
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\RMSSA.pdb
@@ -34,6 +33,7 @@ D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\2.jpg
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\3.jpg
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\4.jpg
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\bin\Debug\Resources\Images\1.jpg
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\bin\Debug\Resources\Images\2.jpg
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\bin\Debug\Resources\Images\3.jpg
@@ -47,11 +47,24 @@ C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMS
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\UserControl1.baml
 =======
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> develop
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindow.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindow.baml
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Bunifu_UI_v1.5.3.dll
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.CopyComplete
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\IngredientsWindow.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\IngredientsWindow.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csprojResolveAssemblyReference.cache
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA.mdf
+<<<<<<< HEAD
 >>>>>>> master
+=======
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\RHSSA_log.ldf
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\TestingDisplayWindow.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\TestingDisplayWindow.baml
+>>>>>>> develop

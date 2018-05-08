@@ -13,5 +13,9 @@ namespace RMSSA.Utils
         // We will maintain a Session for login user...
         // We will set this equal to -1 when user logs out..
         public static int USER_ID = -1;
+
+        //Check if the user has added recipe
+        public static bool RECIPE_ADDED = false;
+        public static int RECIPE_ID = -1;
     }
 }

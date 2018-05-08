@@ -21,7 +21,11 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <Button Name="login_btn" Content="Login" HorizontalAlignment="Left" Margin="881,10,0,0" VerticalAlignment="Top" Width="123" Height="45" Click="LoginBtn_Click" RenderTransformOrigin="0.224,0.66"/>
+            <Button Name="login_btn" Tag="0" HorizontalAlignment="Left" Margin="881,10,0,0" VerticalAlignment="Top" Width="123" Height="45" Click="LoginBtn_Click" RenderTransformOrigin="0.224,0.66" Content="Login" />
+
+
+            <Button x:Name="panel_btn" Content="Panel" HorizontalAlignment="Left" Margin="765,10,0,0" VerticalAlignment="Top" Width="111" Height="45" RenderTransformOrigin="0.131,0.423" Click="panel_btn_Click"/>
+            <Button x:Name="test_display_btn" Content="Display" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Width="80" Height="45" Click="test_display_btn_Click"/>
 
         </Grid>
         <Image x:Name="slider_image" HorizontalAlignment="Left" Height="285" Margin="10,82,0,0" VerticalAlignment="Top" Width="996" Grid.ColumnSpan="3"/>

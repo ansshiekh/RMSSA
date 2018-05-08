@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using RMSSA.Utils;
+
 namespace RMSSA
 {
     /// <summary>
@@ -25,10 +27,42 @@ namespace RMSSA
         public MainWindow()
         {
             InitializeComponent();
+            setupWindow();
             change_slider_image();
                 SetRecipes("abc");
             
         }
+
+
+        /*
+        * If User Logged In -----> Show User Related Information
+        * Else Hide User specific Information
+        * */
+        private void setupWindow()
+        {
+            //Check  if user is logged in
+            if(Session.USER_ID != -1)
+            {
+                //user is logged in
+                panel_btn.Visibility = Visibility.Visible;
+
+                //login User has tag 1
+                login_btn.Content = "Log Out";
+                login_btn.Tag = "1";
+            }
+
+            else
+            {
+                //Normal Viewer
+                panel_btn.Visibility = Visibility.Collapsed;
+
+                //When user logs out set content to login and tag to 0
+                login_btn.Content = "Login";
+                login_btn.Tag = "0";
+            }
+        }
+
+
 
 
         private void search_txt_GotFocus(object sender, RoutedEventArgs e)
@@ -76,10 +110,36 @@ namespace RMSSA
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
-            this.Close();
+            Button btnClicked = (Button)sender;
+            if(btnClicked.Tag == "0")
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                //User is already logged in and wants to logout...
+                Session.USER_ID = -1;
+                new MainWindow().Show();
+                this.Close();
+            }
+           
 
+        }
+
+        private void panel_btn_Click(object sender, RoutedEventArgs e)
+        {
+            UserPanelWindow userPanelWindow = new UserPanelWindow();
+            userPanelWindow.Show();
+            this.Close();
+        }
+
+        private void test_display_btn_Click(object sender, RoutedEventArgs e)
+        {
+            TestingDisplayWindow tw = new TestingDisplayWindow();
+            tw.Show();
+            this.Close();
         }
     }
 }
