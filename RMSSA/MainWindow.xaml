@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMSSA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" WindowState="Maximized">
+        Title="MainWindow" Height="744" Width="1024" Background="#99F4FF08"  ShowInTaskbar="True" ResizeMode="CanMinimize" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="661*"/>
@@ -29,5 +29,13 @@
 
         </Grid>
         <Image x:Name="slider_image" HorizontalAlignment="Left" Height="285" Margin="10,82,0,0" VerticalAlignment="Top" Width="996" Grid.ColumnSpan="3"/>
+       
+            <!--<StackPanel Name="Stack_Panel" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="202" Margin="0,372,0,0" VerticalAlignment="Top" Width="996"/>-->
+
+        <ScrollViewer CanContentScroll="True" Grid.ColumnSpan="3" SnapsToDevicePixels="True" VerticalScrollBarVisibility="Visible" PanningMode="VerticalOnly" Margin="10,372,10,10">
+            <StackPanel Height="auto" Name="Stack_Panel" VerticalAlignment="Top" Width="auto" Orientation="Vertical" CanHorizontallyScroll="False" CanVerticallyScroll="True" ForceCursor="False" SnapsToDevicePixels="True" >
+            </StackPanel>
+        </ScrollViewer>
+
     </Grid>
 </Window>

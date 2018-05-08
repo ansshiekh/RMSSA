@@ -28,6 +28,7 @@ namespace RMSSA
             InitializeComponent();
             setupWindow();
             change_slider_image();
+            SetRecipes("abc");
         }
 
 
@@ -115,6 +116,19 @@ namespace RMSSA
             TestingDisplayWindow tw = new TestingDisplayWindow();
             tw.Show();
             this.Close();
+        }
+        private void SetRecipes(String title)
+        {
+            String[] temp = { "Cookies", "Chicken", "burger" };
+            Recipe_User_Control recipe = new Recipe_User_Control(temp);
+            Stack_Panel.Children.Add(recipe);
+            String[] temp1 = { "sandwich", "rice", "bread" };
+            recipe = new Recipe_User_Control(temp1);
+            Stack_Panel.Children.Add(recipe);
+
+
+
+
         }
     }
 }
