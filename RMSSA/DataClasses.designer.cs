@@ -33,9 +33,6 @@ namespace RMSSA
     partial void InsertComment(Comment instance);
     partial void UpdateComment(Comment instance);
     partial void DeleteComment(Comment instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertIngredient(Ingredient instance);
     partial void UpdateIngredient(Ingredient instance);
     partial void DeleteIngredient(Ingredient instance);
@@ -51,6 +48,9 @@ namespace RMSSA
     partial void InsertUtensil(Utensil instance);
     partial void UpdateUtensil(Utensil instance);
     partial void DeleteUtensil(Utensil instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -88,14 +88,6 @@ namespace RMSSA
 			get
 			{
 				return this.GetTable<Comment>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 		
@@ -138,6 +130,14 @@ namespace RMSSA
 				return this.GetTable<Utensil>();
 			}
 		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
@@ -156,9 +156,9 @@ namespace RMSSA
 		
 		private System.Nullable<int> _Comment_Recipe_Id;
 		
-		private EntityRef<User> _User;
-		
 		private EntityRef<Recipe> _Recipe;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -178,8 +178,8 @@ namespace RMSSA
 		
 		public Comment()
 		{
-			this._User = default(EntityRef<User>);
 			this._Recipe = default(EntityRef<Recipe>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -291,40 +291,6 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_User", ThisKey="Comment_User_Id", OtherKey="User_Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Comments.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Comments.Add(this);
-						this._Comment_User_Id = value.User_Id;
-					}
-					else
-					{
-						this._Comment_User_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Comment", Storage="_Recipe", ThisKey="Comment_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
 		public Recipe Recipe
 		{
@@ -359,193 +325,37 @@ namespace RMSSA
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _User_Id;
-		
-		private string _User_Username;
-		
-		private string _User_Password;
-		
-		private string _User_Country;
-		
-		private string _User_City;
-		
-		private EntitySet<Comment> _Comments;
-		
-		private EntitySet<Recipe> _Recipes;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUser_IdChanging(int value);
-    partial void OnUser_IdChanged();
-    partial void OnUser_UsernameChanging(string value);
-    partial void OnUser_UsernameChanged();
-    partial void OnUser_PasswordChanging(string value);
-    partial void OnUser_PasswordChanged();
-    partial void OnUser_CountryChanging(string value);
-    partial void OnUser_CountryChanged();
-    partial void OnUser_CityChanging(string value);
-    partial void OnUser_CityChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
-			this._Recipes = new EntitySet<Recipe>(new Action<Recipe>(this.attach_Recipes), new Action<Recipe>(this.detach_Recipes));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int User_Id
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_User", ThisKey="Comment_User_Id", OtherKey="User_Id", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._User_Id;
+				return this._User.Entity;
 			}
 			set
 			{
-				if ((this._User_Id != value))
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnUser_IdChanging(value);
 					this.SendPropertyChanging();
-					this._User_Id = value;
-					this.SendPropertyChanged("User_Id");
-					this.OnUser_IdChanged();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
+						this._Comment_User_Id = value.User_Id;
+					}
+					else
+					{
+						this._Comment_User_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("User");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string User_Username
-		{
-			get
-			{
-				return this._User_Username;
-			}
-			set
-			{
-				if ((this._User_Username != value))
-				{
-					this.OnUser_UsernameChanging(value);
-					this.SendPropertyChanging();
-					this._User_Username = value;
-					this.SendPropertyChanged("User_Username");
-					this.OnUser_UsernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Password", DbType="VarChar(50)")]
-		public string User_Password
-		{
-			get
-			{
-				return this._User_Password;
-			}
-			set
-			{
-				if ((this._User_Password != value))
-				{
-					this.OnUser_PasswordChanging(value);
-					this.SendPropertyChanging();
-					this._User_Password = value;
-					this.SendPropertyChanged("User_Password");
-					this.OnUser_PasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Country", DbType="VarChar(50)")]
-		public string User_Country
-		{
-			get
-			{
-				return this._User_Country;
-			}
-			set
-			{
-				if ((this._User_Country != value))
-				{
-					this.OnUser_CountryChanging(value);
-					this.SendPropertyChanging();
-					this._User_Country = value;
-					this.SendPropertyChanged("User_Country");
-					this.OnUser_CountryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_City", DbType="VarChar(50)")]
-		public string User_City
-		{
-			get
-			{
-				return this._User_City;
-			}
-			set
-			{
-				if ((this._User_City != value))
-				{
-					this.OnUser_CityChanging(value);
-					this.SendPropertyChanging();
-					this._User_City = value;
-					this.SendPropertyChanged("User_City");
-					this.OnUser_CityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_Comments", ThisKey="User_Id", OtherKey="Comment_User_Id")]
-		public EntitySet<Comment> Comments
-		{
-			get
-			{
-				return this._Comments;
-			}
-			set
-			{
-				this._Comments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_Recipes", ThisKey="User_Id", OtherKey="Recipe_User_Id")]
-		public EntitySet<Recipe> Recipes
-		{
-			get
-			{
-				return this._Recipes;
-			}
-			set
-			{
-				this._Recipes.Assign(value);
 			}
 		}
 		
@@ -567,30 +377,6 @@ namespace RMSSA
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Comments(Comment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Comments(Comment entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Recipes(Recipe entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Recipes(Recipe entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
@@ -1750,6 +1536,244 @@ namespace RMSSA
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _User_Id;
+		
+		private string _User_Username;
+		
+		private string _User_Password;
+		
+		private string _User_Country;
+		
+		private string _User_City;
+		
+		private System.Data.Linq.Binary _User_Image;
+		
+		private EntitySet<Comment> _Comments;
+		
+		private EntitySet<Recipe> _Recipes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUser_IdChanging(int value);
+    partial void OnUser_IdChanged();
+    partial void OnUser_UsernameChanging(string value);
+    partial void OnUser_UsernameChanged();
+    partial void OnUser_PasswordChanging(string value);
+    partial void OnUser_PasswordChanged();
+    partial void OnUser_CountryChanging(string value);
+    partial void OnUser_CountryChanged();
+    partial void OnUser_CityChanging(string value);
+    partial void OnUser_CityChanged();
+    partial void OnUser_ImageChanging(System.Data.Linq.Binary value);
+    partial void OnUser_ImageChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._Recipes = new EntitySet<Recipe>(new Action<Recipe>(this.attach_Recipes), new Action<Recipe>(this.detach_Recipes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int User_Id
+		{
+			get
+			{
+				return this._User_Id;
+			}
+			set
+			{
+				if ((this._User_Id != value))
+				{
+					this.OnUser_IdChanging(value);
+					this.SendPropertyChanging();
+					this._User_Id = value;
+					this.SendPropertyChanged("User_Id");
+					this.OnUser_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string User_Username
+		{
+			get
+			{
+				return this._User_Username;
+			}
+			set
+			{
+				if ((this._User_Username != value))
+				{
+					this.OnUser_UsernameChanging(value);
+					this.SendPropertyChanging();
+					this._User_Username = value;
+					this.SendPropertyChanged("User_Username");
+					this.OnUser_UsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Password", DbType="VarChar(50)")]
+		public string User_Password
+		{
+			get
+			{
+				return this._User_Password;
+			}
+			set
+			{
+				if ((this._User_Password != value))
+				{
+					this.OnUser_PasswordChanging(value);
+					this.SendPropertyChanging();
+					this._User_Password = value;
+					this.SendPropertyChanged("User_Password");
+					this.OnUser_PasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Country", DbType="VarChar(50)")]
+		public string User_Country
+		{
+			get
+			{
+				return this._User_Country;
+			}
+			set
+			{
+				if ((this._User_Country != value))
+				{
+					this.OnUser_CountryChanging(value);
+					this.SendPropertyChanging();
+					this._User_Country = value;
+					this.SendPropertyChanged("User_Country");
+					this.OnUser_CountryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_City", DbType="VarChar(50)")]
+		public string User_City
+		{
+			get
+			{
+				return this._User_City;
+			}
+			set
+			{
+				if ((this._User_City != value))
+				{
+					this.OnUser_CityChanging(value);
+					this.SendPropertyChanging();
+					this._User_City = value;
+					this.SendPropertyChanged("User_City");
+					this.OnUser_CityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary User_Image
+		{
+			get
+			{
+				return this._User_Image;
+			}
+			set
+			{
+				if ((this._User_Image != value))
+				{
+					this.OnUser_ImageChanging(value);
+					this.SendPropertyChanging();
+					this._User_Image = value;
+					this.SendPropertyChanged("User_Image");
+					this.OnUser_ImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_Comments", ThisKey="User_Id", OtherKey="Comment_User_Id")]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_Recipes", ThisKey="User_Id", OtherKey="Recipe_User_Id")]
+		public EntitySet<Recipe> Recipes
+		{
+			get
+			{
+				return this._Recipes;
+			}
+			set
+			{
+				this._Recipes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Recipes(Recipe entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Recipes(Recipe entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }

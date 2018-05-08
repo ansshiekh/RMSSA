@@ -69,3 +69,18 @@ C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMS
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\UserControl1.g.cs
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\Recipe_User_Control.baml
 C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\UserControl1.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\Recipe_User_Control.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserControl1.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\Recipe_User_Control.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserControl1.baml
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\MaterialDesignColors.dll
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\ShowMeTheXAML.dll
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\VP_Project\RMSSA\RMSSA\bin\Debug\MaterialDesignColors.pdb
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\App.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindowM.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindowM.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindowM.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindowM.baml

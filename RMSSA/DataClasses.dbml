@@ -7,19 +7,8 @@
       <Column Name="Comment_Time" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Comment_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Comment_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="User_Comment" Member="User" ThisKey="Comment_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
       <Association Name="Recipe_Comment" Member="Recipe" ThisKey="Comment_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="User_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="User_Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="User_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="User_City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="User_Comment" Member="Comments" ThisKey="User_Id" OtherKey="Comment_User_Id" Type="Comment" />
-      <Association Name="User_Recipe" Member="Recipes" ThisKey="User_Id" OtherKey="Recipe_User_Id" Type="Recipe" />
+      <Association Name="User_Comment" Member="User" ThisKey="Comment_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Ingredients" Member="Ingredients">
@@ -76,6 +65,18 @@
       <Column Name="Utensil_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Utensil_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Recipe_Utensil" Member="Recipe" ThisKey="Utensil_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_Country" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="User_Image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="User_Id" OtherKey="Comment_User_Id" Type="Comment" />
+      <Association Name="User_Recipe" Member="Recipes" ThisKey="User_Id" OtherKey="Recipe_User_Id" Type="Recipe" />
     </Type>
   </Table>
 </Database>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace RMSSA
             setupWindow();
             change_slider_image();
             SetRecipes("abc");
+
+            showProfileImage();
         }
 
 
@@ -89,7 +92,7 @@ namespace RMSSA
             Button btnClicked = (Button)sender;
             if(btnClicked.Tag == "0")
             {
-                LoginWindow loginWindow = new LoginWindow();
+                LoginWindowM loginWindow = new LoginWindowM();
                 loginWindow.Show();
                 this.Close();
             }
@@ -129,6 +132,20 @@ namespace RMSSA
 
 
 
+        }
+
+        private void showProfileImage()
+        {
+            if(Session.USER_ID != -1)
+            {
+                string strfn = Convert.ToString(DateTime.Now.ToFileTime());
+                FileStream fs1 = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                fs1.Write(Session.USER_PROFILE_IMAGE_BYTES, 0, Session.USER_PROFILE_IMAGE_BYTES.Length);
+                fs1.Flush();
+                fs1.Close();
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                profile_image.SetValue(Image.SourceProperty, imgs.ConvertFromString(strfn));
+            }
         }
     }
 }

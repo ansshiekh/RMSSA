@@ -14,13 +14,14 @@
         </Grid.ColumnDefinitions>
         <Grid HorizontalAlignment="Left" Height="72" Margin="10,10,-8,0" VerticalAlignment="Top" Width="1014" Grid.ColumnSpan="3">
             <Label x:Name="title_txt" Content="RMSSA" HorizontalAlignment="Left" Margin="0,-4,0,12" FontSize="48" FontFamily="Algerian" Width="170" Height="64" VerticalAlignment="Bottom"/>
-            <TextBox Text="Search..." Name="search_txt" Margin="200,5,350,12" Opacity="0.8" Background="#B291A64B" SelectionBrush="#B20078D7" FontSize="30" FontFamily="Arial" TextDecorations="{x:Null}" Foreground="Black" ToolTip="Search" GotFocus="search_txt_GotFocus" Height="62" VerticalAlignment="Bottom" VerticalContentAlignment="Center" >
+            <TextBox Text="Search..." Name="search_txt" Margin="200,-2,524,12" Opacity="0.8" Background="#B291A64B" SelectionBrush="#B20078D7" FontSize="30" FontFamily="Arial" TextDecorations="{x:Null}" Foreground="Black" ToolTip="Search" GotFocus="search_txt_GotFocus" Height="62" VerticalAlignment="Bottom" VerticalContentAlignment="Center" >
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
+            <Image Name="profile_image" Source="pack://application:,,,/Resources/Images/default_profile.png"/>
             <Button Name="login_btn" Tag="0" HorizontalAlignment="Left" Margin="881,10,0,0" VerticalAlignment="Top" Width="123" Height="45" Click="LoginBtn_Click" RenderTransformOrigin="0.224,0.66" Content="Login" />
 
 
