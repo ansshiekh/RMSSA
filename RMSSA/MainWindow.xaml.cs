@@ -21,13 +21,10 @@ namespace RMSSA
     public partial class MainWindow : Window
     {
         private int img_count=1;
-        private String[] recipe ={"Item1","Item2"};
         public MainWindow()
         {
             InitializeComponent();
             change_slider_image();
-                SetRecipes("abc");
-            
         }
 
 
@@ -38,8 +35,6 @@ namespace RMSSA
                 search_txt.Text = "";
             }
         }
-        // method to be called in different thread 
-        //Work in Progress
         private void change_slider_image()
         {
             if (img_count > 4)
@@ -52,26 +47,6 @@ namespace RMSSA
             BitmapImage dp = new BitmapImage(new Uri(path));
 
             slider_image.Source = dp;
-        }
-        //method to set the recipes on the main screen
-        //WIP:::
-        //Todo:
-        //1. connect to database
-        //2. add event handlers
-        //3.... and much more :p
-
-        private void SetRecipes(String title)
-        {
-            String[] temp = {"Cookies","Chicken","burger" };
-                Recipe_User_Control recipe = new Recipe_User_Control(temp);
-                Stack_Panel.Children.Add(recipe);
-                String[] temp1 = { "sandwich","rice","bread" };
-                recipe = new Recipe_User_Control(temp1);
-                Stack_Panel.Children.Add(recipe);
-
-
-
-
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
