@@ -82,6 +82,7 @@
     <Compile Include="IngredientsWindow.xaml.cs">
       <DependentUpon>IngredientsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecipeClass.cs" />
     <Compile Include="Recipe_User_Control.xaml.cs">
       <DependentUpon>Recipe_User_Control.xaml</DependentUpon>
     </Compile>
@@ -91,6 +92,7 @@
     <Compile Include="TestingDisplayWindow.xaml.cs">
       <DependentUpon>TestingDisplayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserClass.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>

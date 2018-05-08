@@ -119,16 +119,56 @@ namespace RMSSA
         }
         private void SetRecipes(String title)
         {
-            String[] temp = { "Cookies", "Chicken", "burger" };
-            Recipe_User_Control recipe = new Recipe_User_Control(temp);
-            Stack_Panel.Children.Add(recipe);
-            String[] temp1 = { "sandwich", "rice", "bread" };
-            recipe = new Recipe_User_Control(temp1);
-            Stack_Panel.Children.Add(recipe);
+            
+            DataClassesDataContext dc = new DataClassesDataContext();
+            RecipeClass resClass = new RecipeClass();
+            UserClass userObject = new UserClass();
+            var resObj = from recipee in dc.Recipes
+                         select recipee;
+
+
+            if (resObj.Count() > 0)
+            {
+                foreach (var rec in resObj)
+                {
+                    resClass.RecipeId = rec.Recipe_Id;
+                    resClass.RecipeName = rec.Recipe_Name;
+                    resClass.RecipeSubtitle = rec.Recipe_Subtitle;
+                    resClass.RecipeRating = Convert.ToDouble(rec.Recipe_Rating);
+                    resClass.RecipeDescription = rec.Recipe_Description;
+                    resClass.RecipeTime = rec.Recipe_PreperationTime;
+                    resClass.RecipeDifficulty = rec.Recipe_Difficulty;
+                    resClass.RecipeUserId = Convert.ToInt32(rec.Recipe_User_Id);
+                    var usrObj = (from user in dc.Users
+                                  where user.User_Id == resClass.RecipeUserId
+                                  select user).SingleOrDefault();
+
+                    userObject.UserUsername = usrObj.User_Username;
+                    userObject.UserPassword = usrObj.User_Password;
+                    userObject.UserCountry = usrObj.User_Country;
+
+
+                    setView(resClass, userObject);
+                    
+                }
+                Stack_Panel.Children.Add(recipe);
+            }
 
 
 
-
+        }
+        int number = 0;
+        Recipe_User_Control recipe = new Recipe_User_Control();
+        private void setView(RecipeClass resClass, UserClass userObject)
+        {
+            recipe.setView(resClass, userObject);
+            if(number==2)
+            {
+                Stack_Panel.Children.Add(recipe);
+                recipe = new Recipe_User_Control();
+                number = 0;
+            }
+            number++;
         }
     }
 }

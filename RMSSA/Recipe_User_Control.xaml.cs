@@ -20,37 +20,63 @@ namespace RMSSA
     /// </summary>
     public partial class Recipe_User_Control : UserControl
     {
+        int placeholer = 0;
         public Recipe_User_Control()
         {
             InitializeComponent();
         }
-        public Recipe_User_Control(String[] Title)
+       
+
+        public void setView(RecipeClass resClass, UserClass userObject)
         {
-            //UserControl1 contains the template of the recipe to be shown as single item
-            InitializeComponent();
-            UserControl1 uc = new UserControl1();
-            uc.recipe_title.Content = Title[0];
-            string path = "pack://application:,,,/Resources/Images/1.jpg";
+            if (placeholer > 2)
+            {
+                placeholer = 0;
+            }
+            if (placeholer == 0)
+            {
+                UserControl1 uc = new UserControl1();
+                uc.recipe_title.Content = resClass.RecipeName;
+                uc.recipe_description.Content = resClass.RecipeDescription;
+                uc.stars.Content = resClass.RecipeRating;
+                uc.username.Content = userObject.UserUsername;
+                string path = "pack://application:,,,/Resources/Images/1.jpg";
 
-            BitmapImage dp = new BitmapImage(new Uri(path));
+                BitmapImage dp = new BitmapImage(new Uri(path));
 
-            uc.image_container.Source = dp;
-            UserControl1 uc1 = new UserControl1();
-            uc1.recipe_title.Content = Title[1];
-            path = "pack://application:,,,/Resources/Images/2.jpg";
+                uc.image_container.Source = dp;
+                Left.Children.Add(uc);
+            }
+            else if (placeholer == 1)
+            {
+                UserControl1 uc = new UserControl1();
+                uc.recipe_title.Content = resClass.RecipeName;
+                uc.recipe_description.Content = resClass.RecipeDescription;
+                uc.stars.Content = resClass.RecipeRating;
+                string path = "pack://application:,,,/Resources/Images/1.jpg";
 
-            dp = new BitmapImage(new Uri(path));
+                BitmapImage dp = new BitmapImage(new Uri(path));
+                uc.username.Content = userObject.UserUsername;
 
-            uc1.image_container.Source = dp;
-            UserControl1 uc2 = new UserControl1();
-            uc2.recipe_title.Content = Title[2];
-            path = "pack://application:,,,/Resources/Images/3.jpg";
-            dp = new BitmapImage(new Uri(path));
+                uc.image_container.Source = dp;
+                Center.Children.Add(uc);
+            }
+            else if (placeholer == 2)
+            {
+                UserControl1 uc = new UserControl1();
+                uc.recipe_title.Content = resClass.RecipeName;
+                uc.recipe_description.Content = resClass.RecipeDescription;
+                uc.stars.Content = resClass.RecipeRating;
+                string path = "pack://application:,,,/Resources/Images/1.jpg";
 
-            uc2.image_container.Source = dp;
-            Left.Children.Add(uc);
-            Center.Children.Add(uc1);
-            Right.Children.Add(uc2);
+                BitmapImage dp = new BitmapImage(new Uri(path));
+                uc.username.Content = userObject.UserUsername;
+
+                uc.image_container.Source = dp;
+                Right.Children.Add(uc);
+            }
+            placeholer++;
         }
+           
+    } 
     }
-}
