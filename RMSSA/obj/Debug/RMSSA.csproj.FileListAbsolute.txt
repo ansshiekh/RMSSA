@@ -32,12 +32,8 @@ D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\1.jpg
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\2.jpg
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\3.jpg
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Resources\Images\4.jpg
-D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindow.g.cs
-D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindow.baml
 D:\VP_Project\RMSSA\RMSSA\bin\Debug\Bunifu_UI_v1.5.3.dll
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\RMSSA.csproj.CopyComplete
-D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.g.cs
-D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindow.baml
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\UserPanelWindow.baml
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\IngredientsWindow.g.cs
@@ -84,3 +80,5 @@ D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindowM.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\LoginWindowM.baml
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindowM.g.cs
 D:\VP_Project\RMSSA\RMSSA\obj\Debug\SignUpWindowM.baml
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\MainWindowM.g.cs
+D:\VP_Project\RMSSA\RMSSA\obj\Debug\MainWindowM.baml

@@ -96,11 +96,11 @@
     <Compile Include="LoginWindowM.xaml.cs">
       <DependentUpon>LoginWindowM.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowM.xaml.cs">
+      <DependentUpon>MainWindowM.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recipe_User_Control.xaml.cs">
       <DependentUpon>Recipe_User_Control.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SignUpWindow.xaml.cs">
-      <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignUpWindowM.xaml.cs">
       <DependentUpon>SignUpWindowM.xaml</DependentUpon>
@@ -116,10 +116,6 @@
     </Compile>
     <Compile Include="Utils\Session.cs" />
     <Page Include="IngredientsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,18 +136,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses.dbml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Recipe_User_Control.xaml">
+    <Page Include="MainWindowM.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SignUpWindow.xaml">
+    <Page Include="Recipe_User_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
