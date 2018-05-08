@@ -4,17 +4,26 @@
 winexe
 C#
 .cs
-D:\VP_Project\RMSSA\RMSSA\obj\Debug\
+C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\obj\Debug\
 RMSSA
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
+C:\Users\Muhammad Anas\Documents\University_Stuff\Visual Programming\project\RMSSA\RMSSA\App.xaml
+3-78144245
+6852095471
+8-1633420221
+1487151668
+MainWindow.xaml;Recipe_User_Control.xaml;UserControl1.xaml;
+=======
 D:\VP_Project\RMSSA\RMSSA\App.xaml
 31441254771
 6852095471
 9330623264
 15338035635
 LoginWindow.xaml;MainWindow.xaml;SignUpWindow.xaml;
+>>>>>>> master
 
 False
 
