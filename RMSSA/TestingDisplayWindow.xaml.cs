@@ -59,11 +59,17 @@ namespace RMSSA
                            select u;
 
             utensils_data_grid.ItemsSource = utensils;
+
+            var users = from u in dc.Users
+                        select u;
+            user_data_grid.ItemsSource = users;
         }
 
         private void back_btn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+
+            MainWindowM mw = new MainWindowM();
+            //MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
         }

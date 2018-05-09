@@ -18,6 +18,7 @@
         Title="Main Window" Height="750" Width="1367" ResizeMode="NoResize" Foreground="White" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridNavigationDrawer">
                 <EasingDoubleKeyFrame KeyTime="0" Value="50" />
@@ -42,17 +43,50 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Window.Triggers>
-    
-    <Grid Background="LightGray">
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF356E95" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+    <Grid Background="White">
+        <Grid Height="60" VerticalAlignment="Top" Background="{DynamicResource PrimaryHueDarkBrush}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <TextBlock Text="Lazeez"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold" Foreground="#DDFFFFFF"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" Name="userinfo_stack_panel" Visibility="Collapsed" >
-                    <Ellipse  Height="30" Width="30" Margin="0 0 10 0">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="userinfo_profile_image" ImageSource="pack://application:,,,/Resources/Images/default_profile.png" AlignmentX="Center" AlignmentY="Center" />
-                        </Ellipse.Fill>
-                    </Ellipse>
+                <StackPanel Orientation="Horizontal" Name="userinfo_stack_panel" Visibility="Visible" >
+
+
+                    <!--<Image Name="userinfo_profile_image" Height="30" Width="30" Margin="0 0 10 0" Source="pack://application:,,,/Resources/Images/default_profile.png"/>-->
+
+                    <Grid Margin="0 0 10 0 ">
+                        <Border Canvas.Left="55"
+            Canvas.Top="30"
+            Width="Auto"
+            Height="Auto"
+            VerticalAlignment="Center"
+            BorderBrush="#FF3B5998"
+            BorderThickness=".5"
+            CornerRadius="15">
+
+                            <Border Name="ReceiverColor"
+                BorderBrush="#FF96B2E4"
+                BorderThickness="1"
+                CornerRadius="15">
+                                <Grid>
+                                    <Border Name="Mask"
+                        Background="White"
+                        BorderBrush="#FF3B5998"
+                        BorderThickness=".5"
+                        CornerRadius="15">
+                                    </Border>
+                                    <StackPanel>
+                                        <Image Name="userinfo_profile_image"
+                            Height="40" Width="40"  Source="pack://application:,,,/Resources/Images/default_profile.png" />
+                                        <StackPanel.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=Mask}" />
+                                        </StackPanel.OpacityMask>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+
+
                     <TextBlock  Name="userinfo_name" Text="UserName" VerticalAlignment="Center" Foreground="#DDFFFFFF"/>
                     <materialDesign:PopupBox HorizontalAlignment="Right" Margin="10" Foreground="#DDFFFFFF" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                         <StackPanel Width="150">
@@ -63,52 +97,79 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
+
+                <Button x:Name="test_display_btn" Content="Display" HorizontalAlignment="Left"  Width="80" Height="33" Click="test_display_btn_Click"/>
+                <Button x:Name="panel_btn" Content="Panel" HorizontalAlignment="Left"  Width="80" Height="33" Click="panel_btn_Click"/>
                 <Button Name="login_btn" Tag="0" Content="Login" Margin="10 10" Click="login_btn_Click"  />
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="GridNavigationDrawer" HorizontalAlignment="Left" Width="50" Background="#FF2F6781">
+        <Grid x:Name="GridNavigationDrawer" HorizontalAlignment="Left" Width="50" Background="{DynamicResource PrimaryHueMidBrush}">
             <StackPanel>
                 <Grid Height="150" Background="White">
                     <Button Name="button_close_menu" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="button_close_menu_Click">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF2F6781" Height="25" Width="25" />
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="{DynamicResource PrimaryHueMidBrush}" Height="25" Width="25" />
                     </Button>
 
                     <Button Name="button_open_menu" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="60" Background="{x:Null}" BorderBrush="{x:Null}" Click="button_open_menu_Click">
-                        <materialDesign:PackIcon Kind="Menu" Foreground="#FF2F6781" Height="25" Width="25"  />
+                        <materialDesign:PackIcon Kind="Menu" Foreground="{DynamicResource PrimaryHueMidBrush}" Height="25" Width="25"  />
                     </Button>
                 </Grid>
 
-                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White">
-                    <ListViewItem Height="60" HorizontalAlignment="Left" Margin="5 0 0 0">
+                <ListView Name="nav_drawer" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White">
+                    <ListViewItem Name="home_drawer_item" Height="60" HorizontalAlignment="Left" Margin="5 0 0 0" PreviewMouseLeftButtonUp="home_drawer_item_PreviewMouseLeftButtonUp">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewDashboard" />
                             <TextBlock Text="Home" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60" HorizontalAlignment="Left" Margin="5 0 0 0">
+                    <ListViewItem Name="add_drawer_item" Height="60" HorizontalAlignment="Left" Margin="5 0 0 0" PreviewMouseLeftButtonUp="add_drawer_item_PreviewMouseLeftButtonUp">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PlusOutline" />
                             <TextBlock Text="Add Recipe" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60" HorizontalAlignment="Left" Margin="5 0 0 0">
+                    <ListViewItem Name="view_drawer_item" Height="60" HorizontalAlignment="Left" Margin="5 0 0 0" PreviewMouseLeftButtonUp="view_drawer_item_PreviewMouseLeftButtonUp">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ViewGrid" />
                             <TextBlock Text="View Recipe" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
 
-                    <ListViewItem Height="60" HorizontalAlignment="Left" Margin="5 0 0 0">
+                    <ListViewItem Name="edit_drawer_item" Height="60" HorizontalAlignment="Left" Margin="5 0 0 0" PreviewMouseLeftButtonUp="edit_drawer_item_PreviewMouseLeftButtonUp">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Pencil" />
                             <TextBlock Text="Edit Recipe" Margin="20 0 0 0"/>
                         </StackPanel>
                     </ListViewItem>
+
+                    <ListViewItem Name="exit_drawer_item" Height="60" HorizontalAlignment="Left" Margin="5 0 0 0" PreviewMouseLeftButtonUp="exit_drawer_item_PreviewMouseLeftButtonUp">
+                        <StackPanel Orientation="Horizontal"  >
+                            <materialDesign:PackIcon Kind="ExitToApp" />
+                            <TextBlock Text="Exit" Margin="20 0 0 0"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
+
+
             </StackPanel>
         </Grid>
+        <Grid Name="main_grid" Background="LightGray" HorizontalAlignment="Left" Height="675" Margin="55,65,0,0" VerticalAlignment="Top" Width="1302" Panel.ZIndex="-1">
+
+            <ScrollViewer CanContentScroll="True" SnapsToDevicePixels="True" VerticalScrollBarVisibility="Visible" PanningMode="VerticalOnly">
+                <StackPanel Height="auto" Name="view_recipe_stackpanel" VerticalAlignment="Top" Width="auto" Orientation="Vertical" CanHorizontallyScroll="False" CanVerticallyScroll="True" ForceCursor="False" SnapsToDevicePixels="True" >
+                     
+                </StackPanel>
+                
+            </ScrollViewer>
+
+           
+
+
+        </Grid>
+
+
     </Grid>
 </Window>

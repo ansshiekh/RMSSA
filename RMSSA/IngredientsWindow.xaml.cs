@@ -108,7 +108,7 @@ namespace RMSSA
             MessageBox.Show("Recipe Updated Successfully...");
 
             dc.SubmitChanges();
-            MainWindow mw = new MainWindow();
+            MainWindowM mw = new MainWindowM();
             mw.Show();
             this.Close();
         }

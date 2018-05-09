@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RMSSA"
         mc:Ignorable="d"
-        Title="TestingDisplayWindow" Height="450" Width="800">
+        Title="TestingDisplayWindow" Height="535.5" Width="888.5">
     <Grid>
         <DataGrid x:Name="recipes_data_grid" HorizontalAlignment="Left" Height="150" Margin="10,0,0,0" VerticalAlignment="Top" Width="257"/>
-        <DataGrid x:Name="ingredients_data_grid" HorizontalAlignment="Left" Height="150" Margin="272,0,0,0" VerticalAlignment="Top" Width="256"/>
+        <DataGrid x:Name="ingredients_data_grid" HorizontalAlignment="Left" Height="150" Margin="306,10,0,0" VerticalAlignment="Top" Width="256"/>
         <DataGrid x:Name="utensils_data_grid" HorizontalAlignment="Left" Height="150" Margin="10,155,0,0" VerticalAlignment="Top" Width="257"/>
-        <DataGrid x:Name="tags_data_grid" HorizontalAlignment="Left" Height="150" Margin="272,155,0,0" VerticalAlignment="Top" Width="257"/>
-        <DataGrid HorizontalAlignment="Left" Height="150" Margin="529,155,0,0" VerticalAlignment="Top" Width="257"/>
-        <DataGrid x:Name="instructions_data_grid" HorizontalAlignment="Left" Height="150" Margin="528,0,0,0" VerticalAlignment="Top" Width="257"/>
-        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Left" Margin="348,376,0,0" VerticalAlignment="Top" Width="76" Click="back_btn_Click"/>
+        <DataGrid x:Name="tags_data_grid" HorizontalAlignment="Left" Height="150" Margin="613,160,0,0" VerticalAlignment="Top" Width="257"/>
+        <DataGrid Name="user_data_grid" HorizontalAlignment="Left" Height="150" Margin="10,310,0,0" VerticalAlignment="Top" Width="860"/>
+        <DataGrid x:Name="instructions_data_grid" HorizontalAlignment="Left" Height="150" Margin="613,0,0,0" VerticalAlignment="Top" Width="257"/>
+        <Button x:Name="back_btn" Content="Back" HorizontalAlignment="Left" Margin="384,463,0,0" VerticalAlignment="Top" Width="76" Click="back_btn_Click"/>
 
     </Grid>
 </Window>

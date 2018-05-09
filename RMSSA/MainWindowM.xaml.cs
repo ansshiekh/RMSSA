@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace RMSSA
 {
@@ -30,6 +31,7 @@ namespace RMSSA
 
         private void setupWindow()
         {
+            setupMainGrid();
             //Check  if user is logged in
 
             if (Session.USER_ID != -1)
@@ -53,11 +55,13 @@ namespace RMSSA
                 
 
             }
+
+           
         }
 
         private void showUserInfoProfileImage()
         {
-            if(Session.USER_PROFILE_IMAGE_BYTES != null)
+            if (Session.USER_PROFILE_IMAGE_BYTES != null && !Session.USER_PROFILE_IMAGE_BYTES.Equals("")) 
             {
                 string strfn = Convert.ToString(DateTime.Now.ToFileTime());
                 FileStream fs1 = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
@@ -65,6 +69,7 @@ namespace RMSSA
                 fs1.Flush();
                 fs1.Close();
                 ImageSourceConverter imgs = new ImageSourceConverter();
+
                 userinfo_profile_image.SetValue(Image.SourceProperty, imgs.ConvertFromString(strfn));
 
             }
@@ -107,6 +112,143 @@ namespace RMSSA
             Session.USER_NAME = null;
             new MainWindowM().Show();
             this.Close();
+        }
+
+      
+
+        private void exit_drawer_item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void test_display_btn_Click(object sender, RoutedEventArgs e)
+        {
+            TestingDisplayWindow tw = new TestingDisplayWindow();
+            tw.Show();
+            this.Close();
+        }
+
+        private void panel_btn_Click(object sender, RoutedEventArgs e)
+        {
+            UserPanelWindow userPanelWindow = new UserPanelWindow();
+            userPanelWindow.Show();
+            this.Close();
+        }
+
+
+        private void setupMainGrid()
+        {
+
+            string selectedMode = Session.SELECTED_MODE;
+            switch (selectedMode)
+            {
+                case "add":
+                    AddScreen();
+                    break;
+
+                case "view":
+                    HomeScreen(false);
+                    break;
+
+                case "edit":
+                    //HomeScreen(true);
+                    break;
+
+                default:
+                    HomeScreen(true);
+                    break;
+            }
+      
+        }
+
+      
+
+        private void AddScreen()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HomeScreen(bool isHome)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            Recipe recipe = new Recipe();
+            User user = new User();
+
+            //Select All Recipes..
+            var recipes = from r in dc.Recipes
+                          select r;
+
+            if (!isHome) { 
+                int currentUserId = Session.USER_ID;
+                recipes = from r in dc.Recipes
+                          where r.User.User_Id == currentUserId
+                          select r;
+            }
+          
+
+            if (recipes.Count() > 0)
+            {
+                int count = 0;
+                RecipeSingleRow recipe_row = new RecipeSingleRow();
+
+                foreach (Recipe r in recipes)
+                {
+                    
+                   
+                    //Adding RecipeUserControl
+                    RecipeUserControl recipeUserControl = new RecipeUserControl();
+                    recipeUserControl.recipe_id.Text = r.Recipe_Id.ToString();
+                    recipeUserControl.recipe_name.Text = r.Recipe_Name;
+                    recipeUserControl.recipe_subtitle.Text = r.Recipe_Subtitle;
+                    recipeUserControl.recipe_description.Text = r.Recipe_Description;
+                    recipeUserControl.recipe_preparation_time.Text = r.Recipe_PreperationTime;
+                    recipeUserControl.recipe_difficulty.Text = r.Recipe_Difficulty;
+                    recipeUserControl.recipe_username.Text = r.User.User_Username;
+
+                    recipe_row.listbox.Items.Add(recipeUserControl);
+
+                    if(count == 2)
+                    {
+                        view_recipe_stackpanel.Children.Add(recipe_row);
+                        recipe_row = new RecipeSingleRow();
+                        count = -1;
+                    }
+
+                    count++;
+
+                }
+                view_recipe_stackpanel.Children.Add(recipe_row);
+            }
+         
+        }
+
+        private void home_drawer_item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Session.SELECTED_MODE = null;
+            view_recipe_stackpanel.Children.Clear();
+            setupMainGrid();
+        }
+
+        private void add_drawer_item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Session.SELECTED_MODE = "add";
+            view_recipe_stackpanel.Children.Clear();
+            setupMainGrid();
+        }
+
+        private void view_drawer_item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Session.SELECTED_MODE = "view";
+            view_recipe_stackpanel.Children.Clear();
+            setupMainGrid();
+        }
+
+        private void edit_drawer_item_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Session.SELECTED_MODE = "edit";
+            view_recipe_stackpanel.Children.Clear();
+            setupMainGrid();
+
         }
     }
 }

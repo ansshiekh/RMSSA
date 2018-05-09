@@ -54,7 +54,8 @@ namespace RMSSA
                 Session.USER_ID = user.User_Id;
                 Session.USER_NAME = user.User_Username;
                 Session.USER_PROFILE_IMAGE_BYTES = user.User_Image.ToArray();
-                //Navigating Back to Main Window...
+
+               //Navigating Back to Main Window...
                 MainWindowM mw = new MainWindowM();
                 mw.Show();
                 this.Close();

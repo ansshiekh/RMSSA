@@ -19,5 +19,9 @@ namespace RMSSA.Utils
         //Check if the user has added recipe
         public static bool RECIPE_ADDED = false;
         public static int RECIPE_ID = -1;
+
+
+        //MainWindow SelectedModes add view edit home etc...
+        public static string SELECTED_MODE = null;
     }
 }

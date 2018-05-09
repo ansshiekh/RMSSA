@@ -30,7 +30,7 @@ namespace RMSSA
         {
             if (!Session.RECIPE_ADDED)
             {
-                MainWindow mw = new MainWindow();
+                MainWindowM mw = new MainWindowM();
                 mw.Show();
                 this.Close();
             }

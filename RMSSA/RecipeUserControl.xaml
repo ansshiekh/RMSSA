@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="RMSSA.RecipeUserControl"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+                 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RMSSA"
+             mc:Ignorable="d" 
+            >
+    <Grid>
+        <materialDesign:Card HorizontalAlignment="Center" Width="400">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="recipe_id" Text="-1" Visibility="Hidden" />
+                <Image Name="recipe_image" Source="Resources/Images/1.jpg" Height="140" Width="Auto" Stretch="UniformToFill" Margin="10,0" />
+                <Viewbox Margin="0 4 0 8" Height="16" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <materialDesign:RatingBar Name="recipe_rating" Value="0" Orientation="Horizontal" Foreground="Gold" Margin="0 0 20 0" />
+                </Viewbox>
+                <StackPanel Grid.Row="1" Margin="8 24 8 0" >
+                    <TextBlock Name="recipe_name" FontWeight="Bold">Recipe Name</TextBlock>
+                    <TextBlock Name="recipe_subtitle" FontWeight="SemiBold">Recipe Sub Title</TextBlock>
+                    <TextBlock Name="recipe_description" TextWrapping="Wrap" VerticalAlignment="Center">A great way to keep fit and forget about the constant grind of IT.</TextBlock>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+
+                    <Button Style="{StaticResource MaterialDesignToolButton}" Width="30" Padding="2 0 2 0"
+                            materialDesign:RippleAssist.IsCentered="True">
+                        <materialDesign:PackIcon Kind="Details" />
+                    </Button>
+
+
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Left" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                    <TextBlock Name="recipe_username" FontWeight="SemiBold" VerticalAlignment="Bottom" Margin="5 0">Username</TextBlock>
+                    <TextBlock Name="recipe_preparation_time" FontWeight="Normal" VerticalAlignment="Bottom" Margin="10 0">Prepation Time</TextBlock>
+                    <TextBlock Name="recipe_difficulty" FontWeight="Normal" VerticalAlignment="Bottom" Margin="10 0">Prepation Time</TextBlock>
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
