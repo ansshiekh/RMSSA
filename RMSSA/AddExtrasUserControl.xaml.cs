@@ -11,18 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace RMSSA
 {
     /// <summary>
-    /// Interaction logic for IngredientsWindow.xaml
+    /// Interaction logic for AddExtrasUserControl.xaml
     /// </summary>
-    public partial class IngredientsWindow : Window
+    public partial class AddExtrasUserControl : UserControl
     {
         DataClassesDataContext dc = new DataClassesDataContext();
+
         private int added_recipe_id;
-        public IngredientsWindow()
+
+        public AddExtrasUserControl()
         {
             InitializeComponent();
             this.added_recipe_id = Session.RECIPE_ID;
@@ -108,19 +111,17 @@ namespace RMSSA
             MessageBox.Show("Recipe Updated Successfully...");
 
             dc.SubmitChanges();
-            MainWindowM mw = new MainWindowM();
-            mw.Show();
-            this.Close();
-        }
 
-        private void back_btn_Click(object sender, RoutedEventArgs e)
+
+            StackPanel stackPanel = (StackPanel)this.Parent;
+            stackPanel.Children.Clear();        }
+
+        private void cancel_btn_Click(object sender, RoutedEventArgs e)
         {
-
             dc.Dispose();
 
-            UserPanelWindow upw = new UserPanelWindow();
-            upw.Show();
-            this.Close();
+            StackPanel stackPanel = (StackPanel)this.Parent;
+            stackPanel.Children.Clear();
         }
     }
 }

@@ -37,8 +37,8 @@ namespace RMSSA
             if (Session.USER_ID != -1)
             {
                 //user is logged in
-                userinfo_stack_panel.Visibility = Visibility.Visible;
-                login_btn.Visibility = Visibility.Collapsed;
+                //userinfo_stack_panel.Visibility = Visibility.Visible;
+                //login_btn.Visibility = Visibility.Collapsed;
 
                 userinfo_name.Text = Session.USER_NAME;
 
@@ -47,16 +47,16 @@ namespace RMSSA
 
             }
 
-            else
-            {
-                //Normal Viewer
-                userinfo_stack_panel.Visibility = Visibility.Collapsed;
-                login_btn.Visibility = Visibility.Visible;
-                
+            //else
+            //{
+            //    //Normal Viewer
+            //    userinfo_stack_panel.Visibility = Visibility.Collapsed;
+            //    login_btn.Visibility = Visibility.Visible;
 
-            }
 
-           
+            //}
+
+
         }
 
         private void showUserInfoProfileImage()
@@ -110,7 +110,7 @@ namespace RMSSA
             Session.USER_ID = -1;
             Session.USER_PROFILE_IMAGE_BYTES = null;
             Session.USER_NAME = null;
-            new MainWindowM().Show();
+            new LoginWindowM().Show();
             this.Close();
         }
 
@@ -121,19 +121,14 @@ namespace RMSSA
             Application.Current.Shutdown();
         }
 
-        private void test_display_btn_Click(object sender, RoutedEventArgs e)
-        {
-            TestingDisplayWindow tw = new TestingDisplayWindow();
-            tw.Show();
-            this.Close();
-        }
+        //private void test_display_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    TestingDisplayWindow tw = new TestingDisplayWindow();
+        //    tw.Show();
+        //    this.Close();
+        //}
 
-        private void panel_btn_Click(object sender, RoutedEventArgs e)
-        {
-            UserPanelWindow userPanelWindow = new UserPanelWindow();
-            userPanelWindow.Show();
-            this.Close();
-        }
+       
 
 
         private void setupMainGrid()
@@ -147,11 +142,13 @@ namespace RMSSA
                     break;
 
                 case "view":
+                    //Syntax of HomeScreen(isHomeScreen)
                     HomeScreen(false);
                     break;
 
                 case "edit":
-                    //HomeScreen(true);
+                    // Syntax of HomeScreen(isHomeScreen)
+                    HomeScreen(false);
                     break;
 
                 default:
@@ -165,7 +162,8 @@ namespace RMSSA
 
         private void AddScreen()
         {
-            throw new NotImplementedException();
+            AddRecipeUserControl addRecipeUserControl = new AddRecipeUserControl();
+            view_recipe_stackpanel.Children.Add(addRecipeUserControl);
         }
 
         private void HomeScreen(bool isHome)
@@ -197,6 +195,18 @@ namespace RMSSA
                    
                     //Adding RecipeUserControl
                     RecipeUserControl recipeUserControl = new RecipeUserControl();
+
+                    //CHeck for EDITING or VIEWING Screen
+                    if(Session.SELECTED_MODE == "edit")
+                    {
+                        recipeUserControl.recipe_edit_btn.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        recipeUserControl.recipe_edit_btn.Visibility = Visibility.Hidden;
+
+                    }
+
                     recipeUserControl.recipe_id.Text = r.Recipe_Id.ToString();
                     recipeUserControl.recipe_name.Text = r.Recipe_Name;
                     recipeUserControl.recipe_subtitle.Text = r.Recipe_Subtitle;

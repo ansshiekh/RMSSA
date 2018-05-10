@@ -48,7 +48,7 @@
         <Grid Height="60" VerticalAlignment="Top" Background="{DynamicResource PrimaryHueDarkBrush}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <TextBlock Text="Lazeez"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold" Foreground="#DDFFFFFF"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" Name="userinfo_stack_panel" Visibility="Visible" >
+                <StackPanel Orientation="Horizontal" Name="userinfo_stack_panel" >
 
 
                     <!--<Image Name="userinfo_profile_image" Height="30" Width="30" Margin="0 0 10 0" Source="pack://application:,,,/Resources/Images/default_profile.png"/>-->
@@ -97,10 +97,6 @@
                         </StackPanel>
                     </materialDesign:PopupBox>
                 </StackPanel>
-
-                <Button x:Name="test_display_btn" Content="Display" HorizontalAlignment="Left"  Width="80" Height="33" Click="test_display_btn_Click"/>
-                <Button x:Name="panel_btn" Content="Panel" HorizontalAlignment="Left"  Width="80" Height="33" Click="panel_btn_Click"/>
-                <Button Name="login_btn" Tag="0" Content="Login" Margin="10 10" Click="login_btn_Click"  />
             </StackPanel>
         </Grid>
 

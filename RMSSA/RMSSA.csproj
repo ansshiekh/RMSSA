@@ -90,8 +90,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="IngredientsWindow.xaml.cs">
-      <DependentUpon>IngredientsWindow.xaml</DependentUpon>
+    <Compile Include="AddExtrasUserControl.xaml.cs">
+      <DependentUpon>AddExtrasUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddRecipeUserControl.xaml.cs">
+      <DependentUpon>AddRecipeUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoginWindowM.xaml.cs">
       <DependentUpon>LoginWindowM.xaml</DependentUpon>
@@ -111,11 +114,12 @@
     <Compile Include="TestingDisplayWindow.xaml.cs">
       <DependentUpon>TestingDisplayWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPanelWindow.xaml.cs">
-      <DependentUpon>UserPanelWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utils\Session.cs" />
-    <Page Include="IngredientsWindow.xaml">
+    <Page Include="AddExtrasUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddRecipeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,10 +153,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestingDisplayWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserPanelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

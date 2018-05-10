@@ -25,6 +25,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Name="recipe_id" Text="-1" Visibility="Hidden" />
+                <Button Visibility="Hidden" Panel.ZIndex="1" Name="recipe_edit_btn" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="recipe_edit_btn_Click" 
+                        HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Margin="0 10 20 0">
+                    <materialDesign:PackIcon Kind="AccountEdit" Height="30" Width="30" />
+                </Button>
                 <Image Name="recipe_image" Source="Resources/Images/1.jpg" Height="140" Width="Auto" Stretch="UniformToFill" Margin="10,0" />
                 <Viewbox Margin="0 4 0 8" Height="16" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <materialDesign:RatingBar Name="recipe_rating" Value="0" Orientation="Horizontal" Foreground="Gold" Margin="0 0 20 0" />
@@ -47,9 +52,45 @@
                 <StackPanel HorizontalAlignment="Left" Grid.Row="2" Orientation="Horizontal" Margin="8">
                     <TextBlock Name="recipe_username" FontWeight="SemiBold" VerticalAlignment="Bottom" Margin="5 0">Username</TextBlock>
                     <TextBlock Name="recipe_preparation_time" FontWeight="Normal" VerticalAlignment="Bottom" Margin="10 0">Prepation Time</TextBlock>
-                    <TextBlock Name="recipe_difficulty" FontWeight="Normal" VerticalAlignment="Bottom" Margin="10 0">Prepation Time</TextBlock>
+                    <TextBlock x:Name="recipe_difficulty" FontWeight="Normal" VerticalAlignment="Bottom" Margin="10 0" Text="Difficulty"/>
                 </StackPanel>
             </Grid>
         </materialDesign:Card>
+
+        <materialDesign:DialogHost IsOpen="False" x:Name="dialog_host" Grid.RowSpan="3">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="20" Orientation="Vertical">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Name="dialog_textblock" Text="Choose the option below." HorizontalAlignment="Center" Margin="20 20" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="dialog_delete_btn"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=dialog_host}" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="dialog_delete_btn_Click" 
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                        Margin="0 0 10 0">
+                            <materialDesign:PackIcon Kind="Delete" />
+                        </Button>
+
+                        <Button Name="dialog_edit_btn"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=dialog_host}" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="dialog_edit_btn_Click" 
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                        Margin="0 0 10 0">
+                            <materialDesign:PackIcon Kind="Pencil" />
+                        </Button>
+
+                        <Button Name="dialog_exit_btn" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=dialog_host}" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="dialog_exit_btn_Click" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0 0 10 0">
+                            <materialDesign:PackIcon Kind="Cancel" />
+                        </Button>
+                    </StackPanel>
+
+
+
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
     </Grid>
+    
+    
 </UserControl>

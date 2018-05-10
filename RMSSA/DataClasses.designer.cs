@@ -33,6 +33,9 @@ namespace RMSSA
     partial void InsertComment(Comment instance);
     partial void UpdateComment(Comment instance);
     partial void DeleteComment(Comment instance);
+    partial void InsertUtensil(Utensil instance);
+    partial void UpdateUtensil(Utensil instance);
+    partial void DeleteUtensil(Utensil instance);
     partial void InsertIngredient(Ingredient instance);
     partial void UpdateIngredient(Ingredient instance);
     partial void DeleteIngredient(Ingredient instance);
@@ -45,9 +48,6 @@ namespace RMSSA
     partial void InsertTag(Tag instance);
     partial void UpdateTag(Tag instance);
     partial void DeleteTag(Tag instance);
-    partial void InsertUtensil(Utensil instance);
-    partial void UpdateUtensil(Utensil instance);
-    partial void DeleteUtensil(Utensil instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -91,6 +91,14 @@ namespace RMSSA
 			}
 		}
 		
+		public System.Data.Linq.Table<Utensil> Utensils
+		{
+			get
+			{
+				return this.GetTable<Utensil>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Ingredient> Ingredients
 		{
 			get
@@ -120,14 +128,6 @@ namespace RMSSA
 			get
 			{
 				return this.GetTable<Tag>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Utensil> Utensils
-		{
-			get
-			{
-				return this.GetTable<Utensil>();
 			}
 		}
 		
@@ -380,6 +380,181 @@ namespace RMSSA
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Utensils")]
+	public partial class Utensil : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Utensil_Id;
+		
+		private string _Utensil_Name;
+		
+		private System.Data.Linq.Binary _Utensil_Img;
+		
+		private System.Nullable<int> _Utensil_Recipe_Id;
+		
+		private EntityRef<Recipe> _Recipe;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUtensil_IdChanging(int value);
+    partial void OnUtensil_IdChanged();
+    partial void OnUtensil_NameChanging(string value);
+    partial void OnUtensil_NameChanged();
+    partial void OnUtensil_ImgChanging(System.Data.Linq.Binary value);
+    partial void OnUtensil_ImgChanged();
+    partial void OnUtensil_Recipe_IdChanging(System.Nullable<int> value);
+    partial void OnUtensil_Recipe_IdChanged();
+    #endregion
+		
+		public Utensil()
+		{
+			this._Recipe = default(EntityRef<Recipe>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Utensil_Id
+		{
+			get
+			{
+				return this._Utensil_Id;
+			}
+			set
+			{
+				if ((this._Utensil_Id != value))
+				{
+					this.OnUtensil_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Id = value;
+					this.SendPropertyChanged("Utensil_Id");
+					this.OnUtensil_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Name", DbType="VarChar(50)")]
+		public string Utensil_Name
+		{
+			get
+			{
+				return this._Utensil_Name;
+			}
+			set
+			{
+				if ((this._Utensil_Name != value))
+				{
+					this.OnUtensil_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Name = value;
+					this.SendPropertyChanged("Utensil_Name");
+					this.OnUtensil_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Utensil_Img
+		{
+			get
+			{
+				return this._Utensil_Img;
+			}
+			set
+			{
+				if ((this._Utensil_Img != value))
+				{
+					this.OnUtensil_ImgChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Img = value;
+					this.SendPropertyChanged("Utensil_Img");
+					this.OnUtensil_ImgChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Recipe_Id", DbType="Int")]
+		public System.Nullable<int> Utensil_Recipe_Id
+		{
+			get
+			{
+				return this._Utensil_Recipe_Id;
+			}
+			set
+			{
+				if ((this._Utensil_Recipe_Id != value))
+				{
+					if (this._Recipe.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUtensil_Recipe_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Utensil_Recipe_Id = value;
+					this.SendPropertyChanged("Utensil_Recipe_Id");
+					this.OnUtensil_Recipe_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Recipe", ThisKey="Utensil_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Recipe Recipe
+		{
+			get
+			{
+				return this._Recipe.Entity;
+			}
+			set
+			{
+				Recipe previousValue = this._Recipe.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipe.Entity = null;
+						previousValue.Utensils.Remove(this);
+					}
+					this._Recipe.Entity = value;
+					if ((value != null))
+					{
+						value.Utensils.Add(this);
+						this._Utensil_Recipe_Id = value.Recipe_Id;
+					}
+					else
+					{
+						this._Utensil_Recipe_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Recipe");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredients")]
 	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -548,7 +723,7 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Recipe", ThisKey="Ingredient_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Recipe", ThisKey="Ingredient_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Recipe Recipe
 		{
 			get
@@ -747,7 +922,7 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Instruction", Storage="_Recipe", ThisKey="Instruction_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Instruction", Storage="_Recipe", ThisKey="Instruction_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Recipe Recipe
 		{
 			get
@@ -826,13 +1001,13 @@ namespace RMSSA
 		
 		private EntitySet<Comment> _Comments;
 		
+		private EntitySet<Utensil> _Utensils;
+		
 		private EntitySet<Ingredient> _Ingredients;
 		
 		private EntitySet<Instruction> _Instructions;
 		
 		private EntitySet<Tag> _Tags;
-		
-		private EntitySet<Utensil> _Utensils;
 		
 		private EntityRef<User> _User;
 		
@@ -861,10 +1036,10 @@ namespace RMSSA
 		public Recipe()
 		{
 			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._Utensils = new EntitySet<Utensil>(new Action<Utensil>(this.attach_Utensils), new Action<Utensil>(this.detach_Utensils));
 			this._Ingredients = new EntitySet<Ingredient>(new Action<Ingredient>(this.attach_Ingredients), new Action<Ingredient>(this.detach_Ingredients));
 			this._Instructions = new EntitySet<Instruction>(new Action<Instruction>(this.attach_Instructions), new Action<Instruction>(this.detach_Instructions));
 			this._Tags = new EntitySet<Tag>(new Action<Tag>(this.attach_Tags), new Action<Tag>(this.detach_Tags));
-			this._Utensils = new EntitySet<Utensil>(new Action<Utensil>(this.attach_Utensils), new Action<Utensil>(this.detach_Utensils));
 			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
@@ -1046,6 +1221,19 @@ namespace RMSSA
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Utensils", ThisKey="Recipe_Id", OtherKey="Utensil_Recipe_Id")]
+		public EntitySet<Utensil> Utensils
+		{
+			get
+			{
+				return this._Utensils;
+			}
+			set
+			{
+				this._Utensils.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Ingredient", Storage="_Ingredients", ThisKey="Recipe_Id", OtherKey="Ingredient_Recipe_Id")]
 		public EntitySet<Ingredient> Ingredients
 		{
@@ -1085,20 +1273,7 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Utensils", ThisKey="Recipe_Id", OtherKey="Utensil_Recipe_Id")]
-		public EntitySet<Utensil> Utensils
-		{
-			get
-			{
-				return this._Utensils;
-			}
-			set
-			{
-				this._Utensils.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_User", ThisKey="Recipe_User_Id", OtherKey="User_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Recipe", Storage="_User", ThisKey="Recipe_User_Id", OtherKey="User_Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public User User
 		{
 			get
@@ -1164,6 +1339,18 @@ namespace RMSSA
 			entity.Recipe = null;
 		}
 		
+		private void attach_Utensils(Utensil entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = this;
+		}
+		
+		private void detach_Utensils(Utensil entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipe = null;
+		}
+		
 		private void attach_Ingredients(Ingredient entity)
 		{
 			this.SendPropertyChanging();
@@ -1195,18 +1382,6 @@ namespace RMSSA
 		}
 		
 		private void detach_Tags(Tag entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = null;
-		}
-		
-		private void attach_Utensils(Utensil entity)
-		{
-			this.SendPropertyChanging();
-			entity.Recipe = this;
-		}
-		
-		private void detach_Utensils(Utensil entity)
 		{
 			this.SendPropertyChanging();
 			entity.Recipe = null;
@@ -1309,7 +1484,7 @@ namespace RMSSA
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Recipe", ThisKey="Tag_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Tag", Storage="_Recipe", ThisKey="Tag_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Recipe Recipe
 		{
 			get
@@ -1337,181 +1512,6 @@ namespace RMSSA
 					else
 					{
 						this._Tag_Recipe_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Recipe");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Utensils")]
-	public partial class Utensil : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Utensil_Id;
-		
-		private string _Utensil_Name;
-		
-		private System.Data.Linq.Binary _Utensil_Img;
-		
-		private System.Nullable<int> _Utensil_Recipe_Id;
-		
-		private EntityRef<Recipe> _Recipe;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUtensil_IdChanging(int value);
-    partial void OnUtensil_IdChanged();
-    partial void OnUtensil_NameChanging(string value);
-    partial void OnUtensil_NameChanged();
-    partial void OnUtensil_ImgChanging(System.Data.Linq.Binary value);
-    partial void OnUtensil_ImgChanged();
-    partial void OnUtensil_Recipe_IdChanging(System.Nullable<int> value);
-    partial void OnUtensil_Recipe_IdChanged();
-    #endregion
-		
-		public Utensil()
-		{
-			this._Recipe = default(EntityRef<Recipe>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Utensil_Id
-		{
-			get
-			{
-				return this._Utensil_Id;
-			}
-			set
-			{
-				if ((this._Utensil_Id != value))
-				{
-					this.OnUtensil_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Id = value;
-					this.SendPropertyChanged("Utensil_Id");
-					this.OnUtensil_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Name", DbType="VarChar(50)")]
-		public string Utensil_Name
-		{
-			get
-			{
-				return this._Utensil_Name;
-			}
-			set
-			{
-				if ((this._Utensil_Name != value))
-				{
-					this.OnUtensil_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Name = value;
-					this.SendPropertyChanged("Utensil_Name");
-					this.OnUtensil_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Img", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Utensil_Img
-		{
-			get
-			{
-				return this._Utensil_Img;
-			}
-			set
-			{
-				if ((this._Utensil_Img != value))
-				{
-					this.OnUtensil_ImgChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Img = value;
-					this.SendPropertyChanged("Utensil_Img");
-					this.OnUtensil_ImgChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Utensil_Recipe_Id", DbType="Int")]
-		public System.Nullable<int> Utensil_Recipe_Id
-		{
-			get
-			{
-				return this._Utensil_Recipe_Id;
-			}
-			set
-			{
-				if ((this._Utensil_Recipe_Id != value))
-				{
-					if (this._Recipe.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUtensil_Recipe_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Utensil_Recipe_Id = value;
-					this.SendPropertyChanged("Utensil_Recipe_Id");
-					this.OnUtensil_Recipe_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipe_Utensil", Storage="_Recipe", ThisKey="Utensil_Recipe_Id", OtherKey="Recipe_Id", IsForeignKey=true)]
-		public Recipe Recipe
-		{
-			get
-			{
-				return this._Recipe.Entity;
-			}
-			set
-			{
-				Recipe previousValue = this._Recipe.Entity;
-				if (((previousValue != value) 
-							|| (this._Recipe.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Recipe.Entity = null;
-						previousValue.Utensils.Remove(this);
-					}
-					this._Recipe.Entity = value;
-					if ((value != null))
-					{
-						value.Utensils.Add(this);
-						this._Utensil_Recipe_Id = value.Recipe_Id;
-					}
-					else
-					{
-						this._Utensil_Recipe_Id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Recipe");
 				}

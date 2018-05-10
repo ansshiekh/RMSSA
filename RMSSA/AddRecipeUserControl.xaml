@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="RMSSA.AddRecipeUserControl"
+            
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RMSSA"
+             mc:Ignorable="d" 
+            Height="768" Width="1300">
+    <Grid>
+        <materialDesign:Card HorizontalAlignment="Center"  VerticalAlignment="Center" Width="800">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="recipe_id" Text="-1" Visibility="Hidden" />
+                <Image Name="recipe_image" Source="Resources/Images/1.jpg" Height="300" Width="Auto" Stretch="UniformToFill" Margin="10,0" />
+                <materialDesign:PackIcon Name="image_select_btn" Kind="Image" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10" materialDesign:ShadowAssist.ShadowDepth="Depth3" PreviewMouseLeftButtonUp="image_select_btn_PreviewMouseLeftButtonUp"/>
+                <StackPanel Grid.Row="1" Margin="30 24 8 0" >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="0 0 0 0" >
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="recipe_name_box" Width="300" materialDesign:HintAssist.Hint="Recipe Name" materialDesign:HintAssist.IsFloating="True" />
+                            <TextBox x:Name="recipe_preparation_box" Width="300" Margin="20 0" materialDesign:HintAssist.Hint="Preparation Time" materialDesign:HintAssist.IsFloating="True" />
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox  x:Name="recipe_subtitle_box" Width="300" materialDesign:HintAssist.Hint="Recipe Subtitle" materialDesign:HintAssist.IsFloating="True" />
+                            <TextBox  x:Name="recipe_difficulty_box" Width="300" Margin="20 0" materialDesign:HintAssist.Hint="Difficulty" materialDesign:HintAssist.IsFloating="True" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox  x:Name="description_box" Width="620" materialDesign:HintAssist.Hint="Recipe Description" materialDesign:HintAssist.IsFloating="True" Margin="0 10" />
+                        </StackPanel>
+
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+
+                    <Button Name="next_btn" Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="next_btn_Click" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0 0 10 0">
+                        <materialDesign:PackIcon Kind="SkipNext" />
+                    </Button>
+
+
+                </StackPanel>
+
+               
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:DialogHost IsOpen="False" x:Name="dialog_host" Grid.RowSpan="3">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="20" Orientation="Vertical">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Name="dialog_textblock" HorizontalAlignment="Center" Margin="10 0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        <materialDesign:PackIcon Name="dialog_icon" Margin="10 0" Foreground="Red" VerticalAlignment="Center" Height="50" Width="50"/>
+                    </StackPanel>
+
+                    <Button Name="dialog_ok_btn" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" CommandTarget="{Binding ElementName=dialog}"
+                        Style="{DynamicResource MaterialDesignFlatButton}" Content="OK"  Margin="0 10 0 0"/>
+
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+    </Grid>
+    
+    
+</UserControl>

@@ -20,9 +20,49 @@ namespace RMSSA
     /// </summary>
     public partial class RecipeUserControl : UserControl
     {
+        DataClassesDataContext dc = new DataClassesDataContext();
+        private int recipeId = -1;
         public RecipeUserControl()
         {
             InitializeComponent();
+
+        }
+
+        private void recipe_edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Testing Edit Button" + recipe_id.Text);
+
+            recipeId = int.Parse(recipe_id.Text);
+            dialog_host.IsOpen = true;
+            
+            
+        }
+
+        private void dialog_delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var res = (from r in dc.Recipes
+                       where r.Recipe_Id == this.recipeId
+                       select r).FirstOrDefault();
+
+            
+            dc.Recipes.DeleteOnSubmit(res);
+            dc.SubmitChanges();
+
+            Window parentWindow = Window.GetWindow(this);
+            new MainWindowM().Show();
+            parentWindow.Close();
+
+        }
+
+        private void dialog_edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dialog_exit_btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

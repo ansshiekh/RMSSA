@@ -11,6 +11,15 @@
       <Association Name="User_Comment" Member="User" ThisKey="Comment_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Utensils" Member="Utensils">
+    <Type Name="Utensil">
+      <Column Name="Utensil_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Utensil_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Utensil_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Utensil_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Recipe_Utensil" Member="Recipe" ThisKey="Utensil_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
   <Table Name="dbo.Ingredients" Member="Ingredients">
     <Type Name="Ingredient">
       <Column Name="Ingredient_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -19,7 +28,7 @@
       <Column Name="Ingredient_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Ingredient_Quantity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Ingredient_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Recipe_Ingredient" Member="Recipe" ThisKey="Ingredient_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
+      <Association Name="Recipe_Ingredient" Member="Recipe" ThisKey="Ingredient_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Instruction" Member="Instructions">
@@ -29,7 +38,7 @@
       <Column Name="Instruction_Description" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Instruction_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Instruction_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Recipe_Instruction" Member="Recipe" ThisKey="Instruction_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
+      <Association Name="Recipe_Instruction" Member="Recipe" ThisKey="Instruction_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Recipes" Member="Recipes">
@@ -43,11 +52,11 @@
       <Column Name="Recipe_Difficulty" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Recipe_User_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Recipe_Comment" Member="Comments" ThisKey="Recipe_Id" OtherKey="Comment_Recipe_Id" Type="Comment" />
+      <Association Name="Recipe_Utensil" Member="Utensils" ThisKey="Recipe_Id" OtherKey="Utensil_Recipe_Id" Type="Utensil" />
       <Association Name="Recipe_Ingredient" Member="Ingredients" ThisKey="Recipe_Id" OtherKey="Ingredient_Recipe_Id" Type="Ingredient" />
       <Association Name="Recipe_Instruction" Member="Instructions" ThisKey="Recipe_Id" OtherKey="Instruction_Recipe_Id" Type="Instruction" />
       <Association Name="Recipe_Tag" Member="Tags" ThisKey="Recipe_Id" OtherKey="Tag_Recipe_Id" Type="Tag" />
-      <Association Name="Recipe_Utensil" Member="Utensils" ThisKey="Recipe_Id" OtherKey="Utensil_Recipe_Id" Type="Utensil" />
-      <Association Name="User_Recipe" Member="User" ThisKey="Recipe_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" />
+      <Association Name="User_Recipe" Member="User" ThisKey="Recipe_User_Id" OtherKey="User_Id" Type="User" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Tags" Member="Tags">
@@ -55,16 +64,7 @@
       <Column Name="Tag_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Tag_Name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="Tag_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Recipe_Tag" Member="Recipe" ThisKey="Tag_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Utensils" Member="Utensils">
-    <Type Name="Utensil">
-      <Column Name="Utensil_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Utensil_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Utensil_Img" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Utensil_Recipe_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Recipe_Utensil" Member="Recipe" ThisKey="Utensil_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" />
+      <Association Name="Recipe_Tag" Member="Recipe" ThisKey="Tag_Recipe_Id" OtherKey="Recipe_Id" Type="Recipe" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.Users" Member="Users">
